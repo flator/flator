@@ -1,0 +1,105 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress 2.3 Related Posts Plugin v0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-20 21:43+0800\n"
+"PO-Revision-Date: 2008-03-20 21:44+0800\n"
+"Last-Translator: Denis <honghua.deng@gmail.com>\n"
+"Language-Team: WordPress 中文团队 <team@wp-cn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: wp_related_posts.php:129
+msgid "No Related Post"
+msgstr "暂无相关日志"
+
+#: wp_related_posts.php:133
+#: wp_related_posts.php:326
+msgid "Random Posts"
+msgstr "随机日志"
+
+#: wp_related_posts.php:136
+#: wp_related_posts.php:327
+msgid "Most Commented Posts"
+msgstr "最多留言日志"
+
+#: wp_related_posts.php:139
+#: wp_related_posts.php:329
+msgid "Most Popular Posts"
+msgstr "最流行日志"
+
+#: wp_related_posts.php:142
+msgid "Something wrong"
+msgstr "发生错误了"
+
+#: wp_related_posts.php:277
+msgid "WordPress Related Posts"
+msgstr "WordPress 相关日志"
+
+#: wp_related_posts.php:309
+msgid "Related Posts Options&hellip;"
+msgstr "相关日志选项 &hellip;"
+
+#: wp_related_posts.php:310
+msgid "WordPress Related Posts Plugin will generate a related posts via WordPress tags, and add the related posts to feed."
+msgstr "WordPress 相关日志插件可以通过 WordPress 的标签系统产生一个相关日志列表，并可以添加相关日志至 RSS 中。"
+
+#: wp_related_posts.php:312
+msgid "Related Posts Preference"
+msgstr "相关日志设置"
+
+#: wp_related_posts.php:315
+msgid "Related Posts Title:"
+msgstr "相关日志列表的标题："
+
+#: wp_related_posts.php:321
+msgid "When No Related Posts, Dispaly:"
+msgstr "当没有相关日志时，显示："
+
+#: wp_related_posts.php:325
+msgid "Text: 'No Related Posts'"
+msgstr "文本：“无相关日志”"
+
+#: wp_related_posts.php:335
+msgid "No Related Post's Title or Text:"
+msgstr "无相关日志时的标题或文本："
+
+#: wp_related_posts.php:341
+msgid "Limit:"
+msgstr "显示的项数："
+
+#: wp_related_posts.php:347
+msgid "Exclude(category IDs):"
+msgstr "不包括（分类ID）："
+
+#: wp_related_posts.php:353
+msgid "Other Setting:"
+msgstr "其他设置"
+
+#: wp_related_posts.php:363
+msgid "Auto Insert Related Posts"
+msgstr "自动插入相关日志"
+
+#: wp_related_posts.php:374
+msgid "Related Posts for RSS"
+msgstr "在RSS中添加相关日志"
+
+#: wp_related_posts.php:385
+msgid "Display Comments Count"
+msgstr "显示留言数"
+
+#: wp_related_posts.php:396
+msgid "Display Post Date"
+msgstr "显示日期"
+
+#: wp_related_posts.php:403
+msgid "Update Preferences &raquo;"
+msgstr "更新选项 &raquo;"
+
+#~ msgid "Related Post"
+#~ msgstr "相关日志"
+

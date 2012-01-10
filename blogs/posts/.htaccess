@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /blogs/posts/
+RewriteRule ^/?([^/]*)\.html?|[^\./]*[:;,\.]*$ /index.php?file=blog.html&postId=$1 [L,NS]

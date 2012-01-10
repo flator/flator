@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /media/
+RewriteRule ^/?([^/]*)\.html?|[^\./]*[:;,\.]*$ /index.php?file=media.html&username=$1 [L,NS]

@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /forum/
+RewriteRule ^/?([_A-Za-z0-9-]+)/([_A-Za-z0-9-]+)\.html/?$ /index.php?file=forum_cat.html&forumCat=$1&thread=$2 [L,NS]
+RewriteRule ^/?([^/]*)\.html?|[^\./]*[:;,\.]*$ /index.php?file=forum_cat.html&forumCat=$1 [L,NS]

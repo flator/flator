@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /media/photos/
+RewriteRule ^/?([^/]*)\.html?|[^\./]*[:;,\.]*$ /index.php?file=photos.html&photoId=$1 [L,NS]

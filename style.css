@@ -1,0 +1,135 @@
+body{ color:#fff;background:#211A00; }
+
+/* egna .styles & classes */
+
+body { font-size: 12px;  margin: 20px 50px 40px 50px; font-family: Helvetica, Verdana, Arial, sans-serif; color: fff; }
+a:link { color: #ffffff }
+a:visited { color: #ffffff }
+a:hover { color: #cccccc; }
+a:active { color: #ffffff }
+
+h1 span, h2 span, p span, a span { display: none; }
+
+#logo { margin-left: auto; margin-right: auto }
+#logo a { display: block; background: url(http://www.flator.se/img/logo.gif) no-repeat; width: 468px;  height: 60px; margin: 35px auto 0 auto; }
+
+p { clear: both; }
+
+i { font-size: 10px; font-style: italic; }
+
+#main { width: 97%; }
+.contentdiv { margin-top: 20px }
+/*.contentdiv p { margin-bottom: 5px; margin-top: 20px; }*/
+#left { float: left; width: 31%; margin-right: 3%; text-align:left; min-width: 209px;}
+#center { float: left; width: 31%; margin-right: 3%; text-align: left; min-width: 209px;}
+#center ol li { margin-left: 17px; }
+#right { float:left; width: 31%; text-align: left; min-width: 209px;}
+
+#leftMenu { float: left; width: 20%; margin-right: 3%; text-align:left; min-width: 209px;}
+#content { float: left; width: 70%; margin-right: 3%; text-align: left;}
+
+#error { margin-top: 15px; border: 2px solid #961319; background-color: #333333; padding: 15px; }
+#thankyou { margin-top: 15px; border: 2px solid #009900; background-color: #333333; padding: 15px; }
+#boxNote {margin-top:20px;padding:3px;font:normal 14px Helvetica, Verdana, Arial, sans-serif;line-height:165%;width:100%;border:1px solid #761A1A;background:#600;}
+
+#leftTutorial { float: left; margin-right: 10px; margin-bottom: 5px; padding: 20px; color: #000000; font-size: 16px; font-weight: bold; font-family: Helvetica, Verdana, Arial, sans-serif; line-height: 35px; background-color: #faf0e6; text-align: center; }
+#rightTutorial { float: left; min-width: 350px; margin-right: 3%; text-align:left; padding: 28px; font-size: 15px; background-color: #933 }
+
+#login { width: 300px; background-color: #ffffff; color: #000000; padding: 10px; margin-bottom: 15px; font-size: 12px }
+#login a { color: #000000; }
+.loginTitle { font-weight: bold; font-size: 16px; color: #000000 }
+
+#dataRow { float: left; min-width: 300px; margin: 10px; text-align:left; padding: 20px; font-size: 15px; background-color: #faf0e6; color: #000000; }
+
+#admin { position: absolute; bottom: 0px; margin-bottom: 10px; }
+
+#previous { float: left; }
+#next { float: right; }
+
+label { width: 8em; float: left; text-align: right; margin-right: 0.5em; display: block }
+.submit input { margin-left: 8.5em; }
+.button input { margin-left: 8.5em; }
+
+#menucase ul.vert-one{margin:0;padding:0;list-style-type:none;display:block;font:bold 16px Helvetica, Verdana, Arial, sans-serif;line-height:165%;width:200px;}
+#menucase ul.vert-one li{margin:0;padding:0;border-top:1px solid #4D0000;border-bottom:1px solid #761A1A;}
+#menucase ul.vert-one li a{display:block;text-decoration:none;color:#fff;background:#600;padding:0 0 0 20px;width:180px;}
+#menucase ul.vert-one li a:hover{background:#900 url("http://www.flator.se/img/vert-one_arrow.gif") no-repeat 0 9px;}
+#menucase ul.vert-one li a.current,ul.vert-one li a.current:hover{background:#933 url("http://www.flator.se/img/vert-one_arrow.gif") no-repeat 0 9px;}
+
+table.spread {
+	border-width: 1px;
+	border-style: outset;
+	border-color: red;
+	border-collapse: collapse;
+	background-color: #faf0e6;
+	color: #000000;
+}
+table.spread th {
+	border-width: 1px;
+	padding: 4px;
+	border-style: inset;
+	border-color: gray;
+	background-color: white;
+	color: #000000;
+	font-size: 12px;
+}
+table.spread td {
+	border-width: 1px;
+	padding: 4px;
+	border-style: inset;
+	border-color: gray;
+	background-color: #faf0e6;
+	color: #000000;
+	font-size: 12px;
+}
+
+#box {margin-top:25px;padding:0;list-style-type:none;display:block;font:bold 16px Helvetica, Verdana, Arial, sans-serif;line-height:165%;width:198px;border:1px solid #761A1A;background:#600;}
+
+/*
+
+#footer ul li { display: inline; margin-right: 15px; }
+
+ol li { list-style-type: decimal;  }
+
+em { font-style: italic; }
+
+h1 { font-size: 72px; font-weight: 700;  margin: 20px 0px 20px 0px; }
+h2 { font-size: 18px; font-weight: 700;  margin: 15px 0px 15px 0px;  }
+h3 { font-size: 12px; font-weight: 700;  margin: 10px 0px 10px 0px;  }
+strong { font-weight: 700; }
+em { font-decoration: cursive;  }
+
+.news { margin-bottom: 15px; }
+#rss { margin-top: 30px;}
+#rss a { text-decoration: none;}
+#rss img { float: left; margin-right: 10px; }
+#rss h2 a { color: #666666; font-size: 18px; font-weight: 700; display:inline; }
+
+#flags { float: right; position: absolute; top: 10px; right: 10px;}
+
+#spacer { height: 63%; }
+#signup { 
+	background-color: #333333; 
+	width: 100%; 
+	height: 300px;
+	position: relative;
+	color: white;
+	float:left;
+}
+
+
+#signup p {}
+#signup form p { margin-bottom: 10px; }
+
+#signupwrapper { position: absolute; bottom: 0px; margin-bottom: 10px; padding-left: 5px; margin-left: 8px; margin-right: 5px; }
+#citywrapper { margin-bottom: 10px; }
+#signup p a { color: white; }
+#signup span a { color: white; }
+
+#city { }
+#retry { display:block; margin-top: 5px;  }
+
+#emailinput { width: 55%; border: 0px; margin: 0px 5px 6px 0px; padding: 3px 5px 3px 5px;}
+#submitbtn { }
+
+*/

@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /maria/
+RewriteRule ^/?([^/]*)\.html?|[^\./]*[:;,\.]*$ /index.php?file=maria.html [L,NS]

@@ -1,0 +1,36 @@
+ExpiresActive On
+ExpiresDefault "access plus 30 days"
+ExpiresByType image/gif "access plus 30 days"
+ExpiresByType image/jpeg "access plus 30 days"
+ExpiresByType image/jpg "access plus 30 days"
+ExpiresByType image/png "access plus 30 days"
+ExpiresByType image/x-icon "access plus 30 days"
+ExpiresByType text/css "access plus 30 days"
+ExpiresByType text/javascript "access plus 30 days"
+ExpiresByType application/x-shockwave-flash "access plus 30 days"
+
+
+
+RewriteEngine On
+#
+  # stuff to let through (ignore)
+  RewriteCond %{REQUEST_URI} "/munin/" [OR]
+  RewriteCond %{REQUEST_URI} "/other/"
+  RewriteRule (.*) $1 [L]
+  #
+RewriteBase /
+ReWriteRule captcha.jpg /captcha/CaptchaSecurityImages.php [QSA]
+RewriteRule ^/?([^/]*\.html?|[^\./]*)[:;,\.]*$ index.php?file=$1 [L,NS]
+RewriteRule ^user-photos/?([^/]*)/small_current/?$ rwdx/photos/photos.php?src=/var/www/rwdx/photos/$1&h=65&w=65&zc=1
+RewriteRule ^user-photos/?([^/]*)/small/?$ rwdx/photos/photos.php?src=/var/www/rwdx/photos/$1&h=65&w=65&zc=1
+RewriteRule ^user-photos/?([^/]*)/small-blog/?$ rwdx/photos/photos.php?src=/var/www/rwdx/photos/$1&h=45&w=45&zc=1
+RewriteRule ^user-photos/?([^/]*)/medium-popup/?$ rwdx/photos/photos.php?src=/var/www/rwdx/photos/$1&w=250&zc=0
+RewriteRule ^user-photos/?([^/]*)/medium-challenge/?$ rwdx/photos/photos.php?src=/var/www/rwdx/photos/$1&w=150&zc=0
+RewriteRule ^user-photos/?([^/]*)/medium/?$ rwdx/photos/photos.php?src=/var/www/rwdx/photos/$1&w=450&zc=0
+RewriteRule ^user-photos/?([^/]*)/large/?$ rwdx/photos/photos.php?src=/var/www/rwdx/photos/$1&w=600&zc=0
+RewriteRule ^user-photos/?([^/]*)/full/?$ /rwdx/photos/$1
+RewriteRule ^user-photos/?([^/]*)/profile-small/?$ rwdx/photos/photos.php?src=/var/www/rwdx/user/$1&h=45&w=45&zc=1
+RewriteRule ^user-photos/?([^/]*)/profile-chat/?$ rwdx/photos/photos.php?src=/var/www/rwdx/user/$1&h=30&w=30&zc=1
+RewriteRule ^user-photos/?([^/]*)/profile/?$ rwdx/photos/photos.php?src=/var/www/rwdx/user/$1&w=200&h=300&zc=1
+RewriteRule ^user-photos/?([^/]*)/profile-thumb/?$ rwdx/photos/photos.php?src=/var/www/rwdx/user/$1&w=45&h=67&zc=1
+
