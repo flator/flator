@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /konv/
+RewriteRule ^/?([^/]*)\.html?|[^\./]*[:;,\.]*$ /index.php?file=konv.html&username=$1 [L,NS]

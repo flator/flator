@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /user/
+RewriteRule ^/?([^/]*)\.html?|[^\./]*[:;,\.]*$ /index.php?file=presentation.html&username=$1 [L,NS]

@@ -1,0 +1,102 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wp_related_post\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-20 21:45+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Denis <honghua.deng@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: wp_related_posts.php:129
+msgid "No Related Post"
+msgstr ""
+
+#: wp_related_posts.php:133
+#: wp_related_posts.php:326
+msgid "Random Posts"
+msgstr ""
+
+#: wp_related_posts.php:136
+#: wp_related_posts.php:327
+msgid "Most Commented Posts"
+msgstr ""
+
+#: wp_related_posts.php:139
+#: wp_related_posts.php:329
+msgid "Most Popular Posts"
+msgstr ""
+
+#: wp_related_posts.php:142
+msgid "Something wrong"
+msgstr ""
+
+#: wp_related_posts.php:277
+msgid "WordPress Related Posts"
+msgstr ""
+
+#: wp_related_posts.php:309
+msgid "Related Posts Options&hellip;"
+msgstr ""
+
+#: wp_related_posts.php:310
+msgid "WordPress Related Posts Plugin will generate a related posts via WordPress tags, and add the related posts to feed."
+msgstr ""
+
+#: wp_related_posts.php:312
+msgid "Related Posts Preference"
+msgstr ""
+
+#: wp_related_posts.php:315
+msgid "Related Posts Title:"
+msgstr ""
+
+#: wp_related_posts.php:321
+msgid "When No Related Posts, Dispaly:"
+msgstr ""
+
+#: wp_related_posts.php:325
+msgid "Text: 'No Related Posts'"
+msgstr ""
+
+#: wp_related_posts.php:335
+msgid "No Related Post's Title or Text:"
+msgstr ""
+
+#: wp_related_posts.php:341
+msgid "Limit:"
+msgstr ""
+
+#: wp_related_posts.php:347
+msgid "Exclude(category IDs):"
+msgstr ""
+
+#: wp_related_posts.php:353
+msgid "Other Setting:"
+msgstr ""
+
+#: wp_related_posts.php:363
+msgid "Auto Insert Related Posts"
+msgstr ""
+
+#: wp_related_posts.php:374
+msgid "Related Posts for RSS"
+msgstr ""
+
+#: wp_related_posts.php:385
+msgid "Display Comments Count"
+msgstr ""
+
+#: wp_related_posts.php:396
+msgid "Display Post Date"
+msgstr ""
+
+#: wp_related_posts.php:403
+msgid "Update Preferences &raquo;"
+msgstr ""
+

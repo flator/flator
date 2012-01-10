@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /blogs/
+RewriteRule ^/?([^/]*)\.html?|[^\./]*[:;,\.]*$ /index.php?file=blog.html&username=$1 [L,NS]

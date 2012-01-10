@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /friends_online/
+RewriteRule ^/?([^/]*)\.html?|[^\./]*[:;,\.]*$ /index.php?file=friends_online.html&username=$1 [L,NS]
