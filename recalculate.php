@@ -1,12 +1,14 @@
 <?php
 include('adodb5/adodb.inc.php');
+include( "static.php" );
 include('functions.php');
+
 $DB = NewADOConnection('mysql');
 if ( DEBUG_MODE == TRUE )
 {
 	#$DB->debug = TRUE;
 }
-$DB->Connect("localhost", "root", "sx53gmQ9", "flator");
+$DB->Connect(LOCALHOST, ROOT, PASS, TABELS);  //static database
 $q = "SELECT * FROM fl_users ORDER BY username ASC";
 #	echo "CurrYear: ".date("Y");
 #	echo " CurrMonth: ".date("m");

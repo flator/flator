@@ -3,6 +3,8 @@
 #	error_reporting( 8 );
 session_start();
 
+include( "static.php" );
+ 
 if ( $_SESSION["debug"] == TRUE )
 {
 	define( "DEBUG_MODE", TRUE );
@@ -20,28 +22,34 @@ else
 #}
 #else
 #{
-#	ini_set('display_errors','Off');
-#	error_reporting( 0 );
+#	ini_set('display_errors','Off 
+#	error_reporting( 0 ); 
 #}
-
-$baseUrl = "http://www.flator.se";
-$usedImagesServerPaths = array("/srv/www/htdocs/rwdx/photos/", "/var/www/rwdx/photos/", "/srv/www/htdocs/rwdx/user/", "/var/www/rwdx/user/", "/var/www/flator.se/rwdx/photos/", "/var/www/flator.se/rwdx/user/");
+echo $YearDiff;
+//$baseUrl = "http://dev.flator.se";  
+$baseUrl = "http://".$_SERVER["SERVER_NAME"]; 
+//$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+//echo $baseUrl; 
+$serverRoot = $_SERVER["DOCUMENT_ROOT"];
+//echo $serverRoot;
+$usedImagesServerPaths = array("/srv/www/htdocs/rwdx/photos/", "/var/www/rwdx/photos/", "/srv/www/htdocs/rwdx/user/", "/var/www/rwdx/user/", "/var/www/dev.flator.se/rwdx/photos/", "/var/www/dev.flator.se/rwdx/user/", "/var/www/flator.se/rwdx/photos/", "/var/www/flator.se/rwdx/user/");
+$usedImagesUrlPaths = array("http://dev.flator.se/rwdx/user", "http://dev.flator.se/rwdx/user");
 
 /* Include the database library and open the connection */
-include('adodb5/adodb.inc.php');
+include('adodb5/adodb.inc.php'); 
 $DB = NewADOConnection('mysql');
 if ( DEBUG_MODE == TRUE )
 {
-	$DB->debug = TRUE; 
+	$DB->debug = TRUE;
 }
 #$DB->debug = TRUE;
 $db->memCache = true;
 $db->memCacheHost = "127.0.0.1"; /// $db->memCacheHost = $ip1; will work too
 $db->memCachePort = 11211; /// this is default memCache port
-$db->memCacheCompress = false; /// Use 'true' to store the item compressed (uses zlib) 
+$db->memCacheCompress = false; /// Use 'true' to store the item compressed (uses zlib)
 $db->cacheSecs = 60*30;
  
-$DB->Connect("localhost", "root", "sx53gmQ9", "flator");
+$DB->Connect(LOCALHOST, ROOT, PASS, TABELS);  //static database
 
 	$q = "SELECT id, city from fl_cities ORDER BY id ASC";
 	$cities = $DB->CacheGetAssoc( 3600*24, $q, FALSE, TRUE );
@@ -166,7 +174,7 @@ $videoChatInvitations = "";
 		}
 		$videoChatInvitations .=  ". Vill du starta videochatten? Tryck på OK. Om du inte vill videochatta, klicka på avbryt.";
 		$videoChatInvitations .= "')) {
-   window.open('http://www.flator.se/videochatt/?invite_user=".$inviteUser."','videochat','width=800,height=620'); } else {	 return false;  }";
+   window.open('".$baseUrl."'/videochatt/?invite_user=".$inviteUser."','videochat','width=800,height=620'); } else {	 return false;  }";
 					$record = array();
 					$record["response"] = "YES";
 					$DB->AutoExecute( "fl_videochat_invitations", $record, 'UPDATE', 'invitedUser = ' . (int)$_SESSION["userId"]);
