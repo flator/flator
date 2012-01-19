@@ -56,7 +56,7 @@ else
 			 ini_set('max_input_time', '320');
 			 ini_set('max_execution_time', '320');
 
-			$folder = '/var/www/rwdx/photos/';
+			$folder = '/var/www/flator.se/rwdx/photos/';
 			
 
 			

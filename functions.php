@@ -112,7 +112,7 @@ function uploadPhotos($newAlbumId = 0) {
 			 ini_set('post_max_size', '100M');
 			 ini_set('upload_max_filesize', '500M');
 
-			$folder = '/var/www/rwdx/photos/';
+			$folder = '/var/www/flator.se/rwdx/photos/';
 
 			$extension = "ffmpeg";
 
@@ -146,7 +146,7 @@ $moviepath = "movies/" ;
 					#echo "File uploaded OK!";
 					$tmp_name = $_FILES["bild"]["tmp_name"][$key];
 					$size = getimagesize($tmp_name);
-					echo "Size: $size";
+					//echo "Size: $size";
 					
 					$name = $_FILES["bild"]["name"][$key];
 					$name = str_replace("+", "", $name);
@@ -158,12 +158,12 @@ $moviepath = "movies/" ;
 					$newpath = $folder.$name;
 					if (file_exists($folder.$name))
 						{
-										echo "Fil finns";
+							echo "Fil finns";
 							$name = $rand.'_'.$name;
 							$newpath = $folder.$name; 
 						}
 					if (move_uploaded_file($tmp_name, $newpath)) {
-					echo "Bild $i laddades upp\n<br>";
+					//echo "Bild $i laddades upp: $newpath\n<br>";
 					
 					 
 			 
@@ -173,9 +173,9 @@ $moviepath = "movies/" ;
 				
 					 // ÄNDRA STORLEK PÅ STORA BILDEN
 					if ($size[0] <= $large_max_width) {
-					  } else {						
+					  } else {
+						echo $newpath;
 						 createThumb($newpath, $newpath, $newwidth, $newheight);
-						
 					  }
 
 
@@ -600,10 +600,13 @@ function truncate($text, $length = 100, $ending = '...', $exact = true, $conside
 function createThumb( $name, $filename, $new_w, $new_h)
 {
 #	echo "<p>Name: " . $name . "<br>Filename: " . $filename . "<br>Width: " . $new_w . "<br>Height: " . $new_h . "</p>\n";
-	$system = explode( '.', $name );	if ( preg_match( '/jpg|jpeg|JPG|JPEG/',$system[1] ) )
-	{		$src_img = imagecreatefromjpeg( $name );	}	if ( preg_match( '/png|PNG/',$system[1] ) )
+	$system = explode( '.', $name );
+	if ( preg_match( '/jpg|jpeg|JPG|JPEG/',$system[2] ) ) 
+	{
+		$src_img = imagecreatefromjpeg( $name );
+	}	if ( preg_match( '/png|PNG/',$system[2] ) ) 
 	{		$src_img = imagecreatefrompng( $name );	}
-	if ( preg_match('/gif|GIF/',$system[1] ) )
+	if ( preg_match('/gif|GIF/',$system[2] ) )
 	{		$src_img = imagecreatefromgif( $name );	}
 	$old_x = imageSX( $src_img );	$old_y = imageSY( $src_img );
 
@@ -618,18 +621,19 @@ function createThumb( $name, $filename, $new_w, $new_h)
 		$thumb_h = $old_y;		
 	}
 
+
 #	if ( $old_x > $old_y )
 #	{#		$thumb_w = $new_w;#		$thumb_h = $old_y * ( $new_h / $old_x );#	}#	if ( $old_x < $old_y )
 #	{#		$thumb_w = $old_x * ( $new_w / $old_y );#		$thumb_h = $new_h;#	}#	if ( $old_x == $old_y )
 #	{#		$thumb_w = $new_w;#		$thumb_h = $new_h;#	}
 
 	$dst_img = ImageCreateTrueColor( $thumb_w, $thumb_h );	imagecopyresampled( $dst_img, $src_img, 0, 0, 0, 0, $thumb_w, $thumb_h, $old_x, $old_y );
-	if ( preg_match( '/jpg|jpeg|JPG|JPEG/',$system[1] ) )
+	if ( preg_match( '/jpg|jpeg|JPG|JPEG/',$system[2] ) )
 	{
 		imagejpeg( $dst_img, $filename );
 	}
-	if ( preg_match( "/png|PNG/", $system[1] ) )	{		imagepng( $dst_img, $filename );	}
-	if ( preg_match( "/gif|GIF/", $system[1] ) )
+	if ( preg_match( "/png|PNG/", $system[2] ) )	{		imagepng( $dst_img, $filename ); 	}
+	if ( preg_match( "/gif|GIF/", $system[2] ) )
 	{		imagegif( $dst_img, $filename );	}	imagedestroy( $dst_img ); 	imagedestroy( $src_img ); }
 
 

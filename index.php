@@ -1,6 +1,7 @@
 <?php
-session_start();
-include( "config.php" );
+session_start(); 
+ 
+include( "config.php" ); 
 
 /* Process file being requested */
 if ( strlen( $_GET["file"] ) > 0 )

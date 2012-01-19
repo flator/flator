@@ -25,7 +25,7 @@ session_start();
 
 class CaptchaSecurityImages {
 
-	var $font = '/var/www/captcha/monofont.ttf';
+	var $font = '/var/www/flator.se/captcha/monofont.ttf';
 
 	function generateCode($characters) {
 		/* list all possible characters, similar looking characters and vowels have been removed */

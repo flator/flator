@@ -25,20 +25,20 @@ else
 #}
 
 $baseUrl = "http://www.flator.se";
-$usedImagesServerPaths = array("/srv/www/htdocs/rwdx/photos/", "/var/www/rwdx/photos/", "/srv/www/htdocs/rwdx/user/", "/var/www/rwdx/user/");
+$usedImagesServerPaths = array("/srv/www/htdocs/rwdx/photos/", "/var/www/rwdx/photos/", "/srv/www/htdocs/rwdx/user/", "/var/www/rwdx/user/", "/var/www/flator.se/rwdx/photos/", "/var/www/flator.se/rwdx/user/");
 
 /* Include the database library and open the connection */
 include('adodb5/adodb.inc.php');
 $DB = NewADOConnection('mysql');
 if ( DEBUG_MODE == TRUE )
 {
-	$DB->debug = TRUE;
+	$DB->debug = TRUE; 
 }
 #$DB->debug = TRUE;
 $db->memCache = true;
 $db->memCacheHost = "127.0.0.1"; /// $db->memCacheHost = $ip1; will work too
 $db->memCachePort = 11211; /// this is default memCache port
-$db->memCacheCompress = false; /// Use 'true' to store the item compressed (uses zlib)
+$db->memCacheCompress = false; /// Use 'true' to store the item compressed (uses zlib) 
 $db->cacheSecs = 60*30;
  
 $DB->Connect("localhost", "root", "sx53gmQ9", "flator");

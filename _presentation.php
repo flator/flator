@@ -36,7 +36,7 @@ else
 
 			if ( $_FILES["image"]["name"] )
 			{
-				$dir = "/var/www/rwdx/user";
+				$dir = "/var/www/flator.se/rwdx/user"; 
 
 				$validImageTypes = array( "image/jpg" => "jpg",
 										  "image/gif" => "gif",
@@ -82,7 +82,7 @@ else
 
 					$record = array();
 					$record["insDate"] = date("Y-m-d H:i:s");
-					$record["userId"] = (int)$_SESSION["userId"];
+					$record["userId"] = (int)$_SESSION["userId"]; 
 					$record["imageType"] = "profileMedium";
 					$record["width"] = $imageInfo[0];
 					$record["height"] = $imageInfo[1];

@@ -14,7 +14,7 @@ else
 
 	$currentLink = array();
 
-		$q = "SELECT fl_images.*, UNIX_TIMESTAMP(fl_images.insDate) AS unixTime, fl_users.username FROM fl_images LEFT JOIN fl_users ON fl_users.id = fl_images.userId WHERE imageType = 'albumPhoto' ORDER BY unixTime DESC LIMIT 30";
+		$q = "SELECT fl_images.*, UNIX_TIMESTAMP(fl_images.insDate) AS unixTime, fl_users.username FROM fl_images LEFT JOIN fl_users ON fl_users.id = fl_images.userId WHERE imageType = 'albumPhoto' ORDER BY unixTime DESC LIMIT 100";
 		$albums = $DB->GetAssoc( $q, FALSE, TRUE );
 	
 
