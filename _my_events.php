@@ -32,6 +32,7 @@ else
 							$record["insDate"] = date("Y-m-d H:i:s");
 							$record["userId"] = (int)$_SESSION["userId"];
 							$record["statusMessage"] = "Lade till event \"<a href=\"http://www.flator.se/events.html\">".trim($addedeventArray[$key2]["name"])."</a>\" till sina events.";
+							//echo $record["statusMessage"];
 							$record["statusType"] = "addedEvent";
 							$DB->AutoExecute( "fl_status", $record, 'INSERT' ); 
 					}
@@ -46,8 +47,7 @@ else
 			while ( list( $key, $value ) = each( $_POST["deleteEventId"] ) )
 			{
 				$query = "DELETE FROM fl_event_subscribers where eventId = ".$value." AND userId = ".(int)$userProfile["id"]."";
-				$DB->_Execute( $query );
-				#echo $query;
+		    	$DB->autoExecute( $query );				///////////////////////////////////////////////////////////////////////////////
 
 			}
 		}
@@ -92,7 +92,7 @@ else
 
 			if ( $_FILES["image"]["name"] )
 			{
-				$dir = "/srv/www/htdocs/rwdx/user";
+				$dir = "/var/www/dev.flator.se/rwdx/user";
 
 				$validImageTypes = array( "image/jpg" => "jpg",
 										  "image/gif" => "gif",
@@ -216,7 +216,8 @@ if ( count( $eventArray ) > 0 )
 
 		if ( strlen( $eventArray[ $key ]["imageUrl"] ) > 0 )
 		{
-			$body.= "<div style=\"float: left; width: 160px; margin-right: 30px\"><img src=\"" . $eventArray[ $key ]["imageUrl"] . "\" border=\"0\" /></div><div style=\"float: left; width: 390px\">";
+		//echo $eventArray[ $key ]["imageUrl"];
+		$body.= "<div style=\"float: left; width: 160px; margin-right: 30px\"><img src=\"" . $eventArray[ $key ]["imageUrl"] . "\" border=\"0\" /></div><div style=\"float: left; width: 390px\">";
 		}
 		else
 		{
@@ -241,7 +242,7 @@ if ( count( $eventArray ) > 0 )
 		$body.= strip_tags( stripslashes( $eventArray[ $key ]["description"] ), "<br><a>" ) . " <span class=\"news_location\">" . $eventArray[ $key ]["requirements"] . "</span><!-- <nobr><a href=\"events/" . $eventArray[ $key ]["id"] . ".html\">Läs mer »</a></nobr>-->";
 		if ( strlen( $eventArray[ $key ]["username"] ) > 0 )
 		{
-			$body.= "<br /><div class=\"email_date\" style=\"display: inline\">Upplagd av:</div> <a href=\"" . $baseUrl . "/user/" . $eventArray[ $key ]["username"] . ".html\" style=\"font-weight: normal\">" . $eventArray[ $key ]["username"] . "</a>";
+			$body.= "<br /><div class=\"email_date\" style=\"display: inline\">Upplagd av:</div> <a href=\"" . $baseUrl . "/rwdx/user/" . $eventArray[ $key ]["username"] . ".html\" style=\"font-weight: normal\">" . $eventArray[ $key ]["username"] . "</a>";
 		}
 
 		$body.= "</div>";

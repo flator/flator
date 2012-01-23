@@ -10,6 +10,7 @@ if ( (int)$_SESSION["rights"] < 2 )
 }
 else
 {
+
 	$body = "<div id=\"center\">
 <form name=\"form\" style=\"margin: 0px; padding: 0px\" method=\"post\" action=\"" . $baseUrl . "/my_events.html\" onSubmit=\"document.form.submit();\">
 
@@ -61,9 +62,11 @@ if ( count( $eventArray ) > 0 )
 
 		$body.= "<p style=\"padding-bottom: 10px\"><div style=\"float: left; width: 10px; margin-right: 10px\"><input type=\"checkbox\" style=\"border: 0px solid #b28aa6\" name=\"eventId[]\" value=\"" . $eventArray[ $key ]["id"] . "\"></div>";
 
-		if ( strlen( $eventArray[ $key ]["imageUrl"] ) > 0 )
+		if ( strlen( $eventArray[ $key ]["imageUrl"] ) > 0 )  //////////////first page events resturants...
 		{
+            // echo $eventArray[ $key ]["imageUrl"];  //////events pictures
 			$body.= "<div style=\"float: left; width: 160px; margin-right: 30px\"><img src=\"" . $eventArray[ $key ]["imageUrl"] . "\" border=\"0\" /></div><div style=\"float: left; width: 390px\">";
+		
 		}
 		else
 		{
@@ -81,8 +84,9 @@ if ( count( $eventArray ) > 0 )
 
 		$body.= "<a href=\"restaurants.html\" class=\"news_type\">" . $eventType . "/" . $eventArray[ $key ]["city"] . "</a>&nbsp;&nbsp;<span class=\"news_headline\">" . stripslashes( $eventArray[ $key ]["name"] ) . "</span><br />
 <a href=\"http://maps.google.se/maps?f=q&hl=sv&q=" . urlencode( $eventArray[ $key ]["location"] . " " . $eventArray[ $key ]["city"] ) . "&z=16&iwloc=addr\" target=\"_blank\">" . $eventArray[ $key ]["location"] . "</a><br />";
-		if ( strlen( $eventDate ) > 0 )
+		if ( strlen( $eventDate ) > 0 )  ///////////////////////////////SHOW THE EVENT DATE IN EVENT PAGE
 		{
+		ECHO  $eventDate;  ///////////////DATE FOR EVENTS
 			$body.= "<span class=\"news_date\">" . $eventDate . "</span><br>";
 		}
 		$body.= strip_tags( stripslashes( $eventArray[ $key ]["description"] ), "<br><a>" ) . " <span class=\"news_location\">" . $eventArray[ $key ]["requirements"] . "</span><!-- <nobr><a href=\"events/" . $eventArray[ $key ]["id"] . ".html\">Läs mer »</a></nobr>-->";

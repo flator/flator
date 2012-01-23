@@ -12,9 +12,8 @@ function pagingButtons($totalResults  , $numPerPage = 10,  $offset, $printed, $u
 //echo "totalResults är:" .$totalResults ."numPerPage är:" . $numPerPage ."offset är:" . $offset. "printed är:" .$printed;
 	if ( $totalResults > $numPerPage )
 	{
-		if ( (int)$offset > 0 )  
+		if ( (int)$offset > 0 )
 		{
-		//echo $url;
 			$body.= "<div id=\"previous\"><a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=0\">< Första sidan </a>
 			<a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=" . ( (int)$offset - $numPerPage ) . "\">< F&ouml;reg&aring;ende sida</a>";
 		}
@@ -61,8 +60,7 @@ for($page = $pagemin; $page <= $pagemax; $page++)
 		//echo "(printed + offset) är:".($printed + $offset)."totalResults är:".$totalResults ;
 		if ( ($printed + $offset) < $totalResults )
 		{
-
-			$body.= "<div id=\"next\"><a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?' ) . "offset=" . ($printed + $offset) . "\">N&auml;sta sida > </a>  
+			$body.= "<div id=\"next\"><a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=" . ($printed + $offset) . "\">N&auml;sta sida > </a>  
 			<a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=" . ($totalResults - $numPerPage) . "\">Sista sidan > </a></div>";  //write "nästa sidan" , "sista sidan"  at the very button of page 
 	
 		}
@@ -118,7 +116,7 @@ function uploadPhotos($newAlbumId = 0) {
 			 ini_set('post_max_size', '100M');
 			 ini_set('upload_max_filesize', '500M');
 
-			$folder = '/var/www/dev.flator.se/rwdx/photos/';
+			$folder = '/var/www/flator.se/rwdx/photos/';
 
 			$extension = "ffmpeg";
 
@@ -152,7 +150,7 @@ $moviepath = "movies/" ;
 					#echo "File uploaded OK!";
 					$tmp_name = $_FILES["bild"]["tmp_name"][$key];
 					$size = getimagesize($tmp_name);
-					echo "Size: $size";
+					//echo "Size: $size";
 					
 					$name = $_FILES["bild"]["name"][$key];
 					$name = str_replace("+", "", $name);
@@ -164,12 +162,12 @@ $moviepath = "movies/" ;
 					$newpath = $folder.$name;
 					if (file_exists($folder.$name))
 						{
-										echo "Fil finns";
+							echo "Fil finns";
 							$name = $rand.'_'.$name;
 							$newpath = $folder.$name; 
 						}
 					if (move_uploaded_file($tmp_name, $newpath)) {
-					echo "Bild $i laddades upp\n<br>";
+					//echo "Bild $i laddades upp: $newpath\n<br>";
 					
 					 
 			 
@@ -179,9 +177,9 @@ $moviepath = "movies/" ;
 				
 					 // ÄNDRA STORLEK PÅ STORA BILDEN
 					if ($size[0] <= $large_max_width) {
-					  } else {						
+					  } else {
+						echo $newpath;
 						 createThumb($newpath, $newpath, $newwidth, $newheight);
-						
 					  }
 
 
@@ -235,7 +233,7 @@ $moviepath = "movies/" ;
 						$record["description"] = addslashes( $_POST["description"] );
 						$record["albumId"] = addslashes( ($newAlbumId > 0 ? $newAlbumId : $_POST["album"]) );
 						$record["imageType"] = $imageType;
-						$record["imageUrl"] = addslashes( str_replace($folder, $baseUrl. "/rwdx/photos/", $newpath) );
+						$record["imageUrl"] = addslashes( str_replace($folder, "http://www.flator.se/rwdx/photos/", $newpath) );
 						$record["serverLocation"] = addslashes( $newpath );
 						$record["videoLocation"] = addslashes( $videopath );
 

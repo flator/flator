@@ -37,7 +37,7 @@ else
 
 			if ( $_FILES["image"]["name"] )
 			{
-				$dir = "/var/www/dev.flator.se/rwdx/user"; 
+				$dir = "/rwdx/user"; 
 
 				$validImageTypes = array( "image/jpg" => "jpg",
 										  "image/gif" => "gif",
