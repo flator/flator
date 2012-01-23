@@ -1,6 +1,6 @@
 <?php
 $metaTitle = "Flator.se - Sök";
-$numPerPage = 100;
+$numPerPage = 10;
 
 if ( (int)$_SESSION["rights"] < 2 )
 {
@@ -11,15 +11,15 @@ if ( (int)$_SESSION["rights"] < 2 )
 }
 else
 {
-
+//var_dump($_REQUEST);
 	if ( $_REQUEST["SearchQuery"] == "" && $_GET["SearchQuery"] != "") $_REQUEST["SearchQuery"] = urldecode($_GET["SearchQuery"]);
-	if ( $_REQUEST["city_id"] == "" && $_GET["city_id"] != "") $_REQUEST["city_id"] = $_GET["city_id"];
+	if ( $_REQUEST["city_id"] == "" && $_GET["city_id"] != "") $_REQUEST["city_id"] = $_GET["city_id"]; 
 	if ( $_REQUEST["highAge"] == "" && $_GET["highAge"] != "") $_REQUEST["highAge"] = $_GET["highAge"];
 	if ( $_REQUEST["lowAge"] == "" && $_GET["lowAge"] != "") $_REQUEST["lowAge"] = $_GET["lowAge"];
 	if ( $_REQUEST["type"] == "" && $_GET["type"] != "") $_REQUEST["type"] = $_GET["type"];
 	if ( $_REQUEST["SearchQuery"] == "Sök flata (se alla = enter)" ) unset( $_REQUEST["SearchQuery"] );
 	if ( $_REQUEST["SearchQuery"] == "" && $_GET["order"] == "") $_GET["order"] = "loginTime";
-
+	
 	if ( $_REQUEST["type"] == "advSearch" ) {
 
 		if ((int)$_REQUEST["city_id"] > 0) {
@@ -28,7 +28,9 @@ else
 		} else {
 			$city_query = "";
 		}
+		
 		$specific_query = "fl_users.username LIKE '%" . addslashes( $_REQUEST["SearchQuery"] ) . "%' AND currAge <= " . addslashes( $_REQUEST["highAge"] ) . " AND currAge >= " . addslashes( $_REQUEST["lowAge"] ) . " ".$city_query;
+		//echo $specific_query;
 		if ($_GET["order"] == "") $_GET["order"] = "loginTime";
 		$urlParams .= "&lowAge=".(int)$_REQUEST["lowAge"]."&highAge=".(int)$_REQUEST["highAge"];
 		$urlParams .= "&type=advSearch";
@@ -67,6 +69,7 @@ else
 #	elseif ( strlen( $_REQUEST["SearchQuery"] ) > 2 )
 #	{
 $specific_query = "fl_users.username LIKE '%" . addslashes( $_REQUEST["SearchQuery"] ) . "%'";
+$record["searchUrl"]=$baseUrl . "/search.html?order=" . $_GET["order"] . "&SearchQuery=" . $_REQUEST["SearchQuery"];
 }
 
 $limitQuery = " LIMIT ".((int)$_GET["offset"] > 0 ? (int)$_GET["offset"].', '.$numPerPage : $numPerPage);
@@ -78,12 +81,15 @@ $limitQuery = " LIMIT ".((int)$_GET["offset"] > 0 ? (int)$_GET["offset"].', '.$n
 		$order = "online";
 	
 	} elseif ( $_GET["order"] == "loginTime" ) {
-		$q = "SELECT fl_users.*, UNIX_TIMESTAMP(lastVisibleOnline) AS unixTime FROM fl_users WHERE ".$specific_query." AND fl_users.rights > 1 ORDER BY lastVisibleOnline DESC".$limitQuery;
+	
+		$q = "SELECT fl_users.* FROM fl_users WHERE ".$specific_query." AND rights > 1 ORDER BY username ASC".$limitQuery;
+		//var_dump($specific_query);
 		$countQuery = "SELECT count(id) FROM fl_users WHERE ".$specific_query." AND fl_users.rights > 1";
+		//var_dump($countQuery);
 		$order = "loginTime";
 	
 	} elseif ( $_GET["order"] == "username" ) {
-		$order = "abc";
+  	$order = "abc";
 		$q = "SELECT fl_users.* FROM fl_users WHERE ".$specific_query." AND rights > 1 ORDER BY username ASC".$limitQuery;
 		$countQuery = "SELECT count(id) FROM fl_users WHERE ".$specific_query." AND fl_users.rights > 1";
 	} else {
@@ -132,7 +138,7 @@ $printed = 0;
 			if ( count( $mailImage ) > 0 )
 			{
 				$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace('http://www.flator.se/rwdx/user/', '', $mailImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\"  />";
-
+    //ECHO $baseUrl;
 			}
 			else
 			{
@@ -231,7 +237,7 @@ $body.= "<tr>
 }
 			
  $printed++;
-		}
+}
 	}
 	else
 	{
@@ -240,9 +246,8 @@ $body.= "<tr>
 
 	$body.= "</table>\n\n	<div id=\"divFooterSpace\" style=\"border: 0px;\">";
 
-
-	$body .= pagingButtons($countResult[0], $numPerPage, (int)$_GET["offset"], $printed,  $baseUrl . "/search.html?order=" . $_GET["order"] . "&SearchQuery=" . $_REQUEST["SearchQuery"]);
-
+    $body .= pagingButtons($countResult[0], $numPerPage, (int)$_GET["offset"], $printed,  $record["searchUrl"] );
+	
 	$body.= "&nbsp;</div></p></form>
 
 </div>

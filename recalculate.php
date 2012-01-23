@@ -14,36 +14,47 @@ $q = "SELECT * FROM fl_users ORDER BY username ASC";
 #	echo " CurrMonth: ".date("m");
 #	echo " CurrDay: ".date("d");
 $searchResult = $DB->GetAssoc( $q, FALSE, TRUE );
-while ( list( $key, $value ) = each( $searchResult ) )
+while ( list( $key, $value ) = each( $searchResult ) )  //
 		{
 			$age = 0;
+			echo $key[1];          //
+   			//var_dump( $value);  //user info.
 			if ( strlen( $searchResult[ $key ]["personalCodeNumber"]) > 0 )
 			{
+			//echo $searchResult[ 12079 ]["personalCodeNumber"];1
 				$searchResult[ $key ]["personalCodeNumber"] = str_replace( "-", "", $searchResult[ $key ]["personalCodeNumber"] );
+				//var_dump($searchResult[ 1 ]);
 				$searchResult[ $key ]["personalCodeNumber"] = str_replace( "+", "", $searchResult[ $key ]["personalCodeNumber"] );
-				if ( strlen( $searchResult[ $key ]["personalCodeNumber"] ) == 10 )
+				if ( strlen( $searchResult[ $key ]["personalCodeNumber"] ) == 10 )   //if user regester social nr. like 1982.....
 				{
 					$birthDay = (int)substr( $searchResult[ $key ]["personalCodeNumber"], 4, 2 );
+					//echo $birthDay;
 					$birthMonth = strtolower( (int)substr( $searchResult[ $key ]["personalCodeNumber"], 2, 2 )  );
+					//echo $birthMonth;
 					if ((int)substr( $searchResult[ $key ]["personalCodeNumber"], 0, 2 ) > 10) {
 					$birthYear = "19" . substr( $searchResult[ $key ]["personalCodeNumber"], 0, 2 );
+					//echo $birthYear;
 					} else {
 					$birthYear = "20" . substr( $searchResult[ $key ]["personalCodeNumber"], 0, 2 );
+					//echo $birthYear;
 					}
 				}
-				elseif ( strlen( $searchResult[ $key ]["personalCodeNumber"] ) == 12 )
+				elseif ( strlen( $searchResult[ $key ]["personalCodeNumber"] ) == 12 )  //if user regester social nr. like 1982.....
 				{
 					$birthDay = (int)substr( $searchResult[ $key ]["personalCodeNumber"], 6, 2 );
 					$birthMonth = strtolower( (int)substr( $searchResult[ $key ]["personalCodeNumber"], 4, 2 )  );
 					$birthYear = substr( $searchResult[ $key ]["personalCodeNumber"], 0, 4 );
+					//echo $birthYear;
 				}
 				elseif ( strlen( $searchResult[ $key ]["personalCodeNumber"] ) == 8 )
 				{
 					$birthDay = (int)substr( $searchResult[ $key ]["personalCodeNumber"], 6, 2 );
 					$birthMonth = strtolower( (int)substr( $searchResult[ $key ]["personalCodeNumber"], 4, 2 )  );
 					$birthYear = substr( $searchResult[ $key ]["personalCodeNumber"], 0, 4 );
+					//echo $birthYear;
 				}
 				$age = GetAge($birthYear, $birthMonth, $birthDay);
+				//var_dump($age); //show age
 			}
 				#echo "UserId: ".(int)$searchResult[ $key ]["id"]." Birthday: $birthDay Month: $birthMonth Year: $birthYear Age: $age"."<br>\n";
 				$record = array();	
@@ -51,8 +62,9 @@ while ( list( $key, $value ) = each( $searchResult ) )
 				$record["personalCodeNumber"] = $birthYear.(strlen($birthMonth) > 1 ? $birthMonth : "0".$birthMonth).(strlen($birthDay) > 1 ? $birthDay : "0".$birthDay);
 				}
 				$record["currAge"] = $age;
+				var_dump((int)$searchResult[ $key ]["id"]);
 				$DB->AutoExecute( "fl_users", $record, 'UPDATE', 'id = '.(int)$searchResult[ $key ]["id"] ); 
-
+                 
 		}
 
 

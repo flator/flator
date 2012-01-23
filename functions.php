@@ -7,12 +7,14 @@ function redirect($url) {
 }
 
 
-function pagingButtons($totalResults, $numPerPage = 10, $offset, $printed, $url) {
+function pagingButtons($totalResults  , $numPerPage = 10,  $offset, $printed, $url) {
 
+//echo "totalResults är:" .$totalResults ."numPerPage är:" . $numPerPage ."offset är:" . $offset. "printed är:" .$printed;
 	if ( $totalResults > $numPerPage )
 	{
-		if ( (int)$offset > 0 )
+		if ( (int)$offset > 0 )  
 		{
+		//echo $url;
 			$body.= "<div id=\"previous\"><a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=0\">< Första sidan </a>
 			<a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=" . ( (int)$offset - $numPerPage ) . "\">< F&ouml;reg&aring;ende sida</a>";
 		}
@@ -21,9 +23,9 @@ function pagingButtons($totalResults, $numPerPage = 10, $offset, $printed, $url)
 			$body.= "<div id=\"previous\">&nbsp;\n";
 		}
 		$body .= "</div>";
-		$pagenum = (ceil($offset/$numPerPage) == 0 ? 1 : ceil($offset/$numPerPage)+1);
+		$pagenum = (ceil($offset/$numPerPage) == 0 ? 1 : ceil($offset/$numPerPage)+1); 
 		$maxpage = ceil($totalResults/$numPerPage);
-$pagetotal = 7; // maximum page numbers to display at once, must be an odd number
+$pagetotal =7; // maximum page numbers to display at once, must be an odd number
 $pagelimit = ($pagetotal-1)/2;
 $pagemax = $pagetotal>$maxpage?$maxpage:$pagetotal;
 if ($pagenum - $pagelimit < 1) {
@@ -50,16 +52,19 @@ for($page = $pagemin; $page <= $pagemax; $page++)
   }
   else
   {
-     $pages .= " <a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=" . (($page * $numPerPage)-10) . "\">".floor($page)."</a> ";
+     $pages .= " <a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=" . (($page * $numPerPage)-10) . "\">".floor($page)."</a> ";  //show the page numbers
   }
 }
 
 
 		$body.= "<div id=\"middle\" style=\"text-align: center;\">".$pages."<br /><b>" . (int)$offset.' - '.((int)$offset+$printed)  . "</b> av totalt <b>". $totalResults . "</b></div>\n";
+		//echo "(printed + offset) är:".($printed + $offset)."totalResults är:".$totalResults ;
 		if ( ($printed + $offset) < $totalResults )
 		{
-			$body.= "<div id=\"next\"><a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=" . ($printed + $offset) . "\">N&auml;sta sida > </a>
-			<a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=" . ($totalResults - $numPerPage) . "\">Sista sidan > </a></div>";
+
+			$body.= "<div id=\"next\"><a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?' ) . "offset=" . ($printed + $offset) . "\">N&auml;sta sida > </a>  
+			<a href=\"" . $url . (strpos($url, "?") !== FALSE ? '&' : '?') . "offset=" . ($totalResults - $numPerPage) . "\">Sista sidan > </a></div>";  //write "nästa sidan" , "sista sidan"  at the very button of page 
+	
 		}
 	}
 	else
@@ -78,6 +83,7 @@ list($hour, $minute, $second) = explode(':', $time);
 $timestamp = mktime($hour, $minute, $second, $month, $day, $year);
 
 return $timestamp;
+
 }
 
 function br2nl($text)
@@ -112,7 +118,7 @@ function uploadPhotos($newAlbumId = 0) {
 			 ini_set('post_max_size', '100M');
 			 ini_set('upload_max_filesize', '500M');
 
-			$folder = '/var/www/flator.se/rwdx/photos/';
+			$folder = '/var/www/dev.flator.se/rwdx/photos/';
 
 			$extension = "ffmpeg";
 
@@ -146,7 +152,7 @@ $moviepath = "movies/" ;
 					#echo "File uploaded OK!";
 					$tmp_name = $_FILES["bild"]["tmp_name"][$key];
 					$size = getimagesize($tmp_name);
-					//echo "Size: $size";
+					echo "Size: $size";
 					
 					$name = $_FILES["bild"]["name"][$key];
 					$name = str_replace("+", "", $name);
@@ -158,12 +164,12 @@ $moviepath = "movies/" ;
 					$newpath = $folder.$name;
 					if (file_exists($folder.$name))
 						{
-							echo "Fil finns";
+										echo "Fil finns";
 							$name = $rand.'_'.$name;
 							$newpath = $folder.$name; 
 						}
 					if (move_uploaded_file($tmp_name, $newpath)) {
-					//echo "Bild $i laddades upp: $newpath\n<br>";
+					echo "Bild $i laddades upp\n<br>";
 					
 					 
 			 
@@ -173,9 +179,9 @@ $moviepath = "movies/" ;
 				
 					 // ÄNDRA STORLEK PÅ STORA BILDEN
 					if ($size[0] <= $large_max_width) {
-					  } else {
-						echo $newpath;
+					  } else {						
 						 createThumb($newpath, $newpath, $newwidth, $newheight);
+						
 					  }
 
 
@@ -229,7 +235,7 @@ $moviepath = "movies/" ;
 						$record["description"] = addslashes( $_POST["description"] );
 						$record["albumId"] = addslashes( ($newAlbumId > 0 ? $newAlbumId : $_POST["album"]) );
 						$record["imageType"] = $imageType;
-						$record["imageUrl"] = addslashes( str_replace($folder, "http://www.flator.se/rwdx/photos/", $newpath) );
+						$record["imageUrl"] = addslashes( str_replace($folder, $baseUrl. "/rwdx/photos/", $newpath) );
 						$record["serverLocation"] = addslashes( $newpath );
 						$record["videoLocation"] = addslashes( $videopath );
 
@@ -368,7 +374,6 @@ $code= proc_close($process);
 return $output;
 }
 function GetAge($BirthYear, $BirthMonth, $BirthDay)
-
 {
 
         // Explode the date into meaningful variables
@@ -596,19 +601,28 @@ function truncate($text, $length = 100, $ending = '...', $exact = true, $conside
     }
 
 
-
 function createThumb( $name, $filename, $new_w, $new_h)
 {
 #	echo "<p>Name: " . $name . "<br>Filename: " . $filename . "<br>Width: " . $new_w . "<br>Height: " . $new_h . "</p>\n";
-	$system = explode( '.', $name );
-	if ( preg_match( '/jpg|jpeg|JPG|JPEG/',$system[2] ) ) 
+//
+	$system = explode( '.', strrev($name) );                       //reverse every hole the path to find pictures!(backward reading)
+	//$system =stripos(strrev($name), strrev($needle);
+	//echo  $system[0] ;
+	if ( preg_match( '/gpj|gepj|GPJ|GEPJ/',$system[0] ) )          //everything is backwarded
 	{
-		$src_img = imagecreatefromjpeg( $name );
-	}	if ( preg_match( '/png|PNG/',$system[2] ) ) 
-	{		$src_img = imagecreatefrompng( $name );	}
-	if ( preg_match('/gif|GIF/',$system[2] ) )
-	{		$src_img = imagecreatefromgif( $name );	}
-	$old_x = imageSX( $src_img );	$old_y = imageSY( $src_img );
+		$src_img = imagecreatefromjpeg($name);           //back to normal
+		
+	}
+	if ( preg_match( '/gnp|GNP/',$system[0] ) )                    //everything is backwarded
+	{
+		$src_img = imagecreatefrompng(strrev($name) );             //back to normal
+	}
+	if ( preg_match('/fig|FIG/',$system[0] ) )                    //everything is backwarded
+	{
+		$src_img = imagecreatefromgif( strrev($name) );           //back to normal
+	}
+	$old_x = imageSX( $src_img );
+	$old_y = imageSY( $src_img );
 
 	if ( $old_x > $new_w ) // Larger then the maximum width
 	{
@@ -621,20 +635,39 @@ function createThumb( $name, $filename, $new_w, $new_h)
 		$thumb_h = $old_y;		
 	}
 
-
 #	if ( $old_x > $old_y )
-#	{#		$thumb_w = $new_w;#		$thumb_h = $old_y * ( $new_h / $old_x );#	}#	if ( $old_x < $old_y )
-#	{#		$thumb_w = $old_x * ( $new_w / $old_y );#		$thumb_h = $new_h;#	}#	if ( $old_x == $old_y )
-#	{#		$thumb_w = $new_w;#		$thumb_h = $new_h;#	}
+#	{
+#		$thumb_w = $new_w;
+#		$thumb_h = $old_y * ( $new_h / $old_x );
+#	}
+#	if ( $old_x < $old_y )
+#	{
+#		$thumb_w = $old_x * ( $new_w / $old_y );
+#		$thumb_h = $new_h;
+#	}
+#	if ( $old_x == $old_y )
+#	{
+#		$thumb_w = $new_w;
+#		$thumb_h = $new_h;
+#	}
 
-	$dst_img = ImageCreateTrueColor( $thumb_w, $thumb_h );	imagecopyresampled( $dst_img, $src_img, 0, 0, 0, 0, $thumb_w, $thumb_h, $old_x, $old_y );
-	if ( preg_match( '/jpg|jpeg|JPG|JPEG/',$system[2] ) )
+	$dst_img = ImageCreateTrueColor( $thumb_w, $thumb_h );
+	imagecopyresampled( $dst_img, $src_img, 0, 0, 0, 0, $thumb_w, $thumb_h, $old_x, $old_y );
+	if ( preg_match( '/gpj|gepj|GPJ|GEPJ/',$system[0] ) )
 	{
 		imagejpeg( $dst_img, $filename );
 	}
-	if ( preg_match( "/png|PNG/", $system[2] ) )	{		imagepng( $dst_img, $filename ); 	}
-	if ( preg_match( "/gif|GIF/", $system[2] ) )
-	{		imagegif( $dst_img, $filename );	}	imagedestroy( $dst_img ); 	imagedestroy( $src_img ); }
+	if ( preg_match( "/gnp|GNP/", $system[0] ) )
+	{
+		imagepng( $dst_img, $filename );
+	}
+	if ( preg_match( "/fig|FIG/", $system[0] ) )
+	{
+		imagegif( $dst_img, $filename );
+	}
+	imagedestroy( $dst_img ); 
+	imagedestroy( $src_img ); 
+}
 
 
 

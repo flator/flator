@@ -1,6 +1,7 @@
 <?php
 if ( (int)$_SESSION["rights"] < 2 )
 {
+//echo "DayDiff: $DayDiff MonthDiff: $MonthDiff YearDiff: $YearDiff Year: ".date("Y")." BirthYear: ".$BirthYear;
 	$publicMenu = TRUE;
 	$memberMenu = FALSE;
 	$loginUrl = $baseUrl . "/presentation.html";
@@ -36,7 +37,7 @@ else
 
 			if ( $_FILES["image"]["name"] )
 			{
-				$dir = "/var/www/flator.se/rwdx/user"; 
+				$dir = "/var/www/dev.flator.se/rwdx/user"; 
 
 				$validImageTypes = array( "image/jpg" => "jpg",
 										  "image/gif" => "gif",
@@ -304,6 +305,7 @@ else
 	$body.= "<div style=\"margin-bottom: 0x; margin-top: 30px\">" . $avatar ."</div>";
 
 	$lastOnlineTime = convert_datetime($userPres["lastVisibleOnline"]);
+
 	if ($lastOnlineTime > (time() - 900) && $userPres["videoChat"] == "YES") {
  		$body .= "<div style=\"border-bottom: 1px dotted #c8c8c8; margin-top:5px; padding-bottom:5px;\"><span onMouseOver=\"document.chatInvite_onpres.src='" . $baseUrl . "/img/symbols/gif_red/chat.gif'\" onMouseOut=\"document.chatInvite_onpres.src='" . $baseUrl . "/img/symbols/gif_purple/chat.gif'\"><a href=\"#noexist\" onclick=\"showPopup('popupChatInvite');\" style=\"font-weight: normal; line-height: 22px\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/chat.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"chatInvite_onpres\" />&nbsp;&nbsp;Bjud in till videochatt</a></span></div>";
 
