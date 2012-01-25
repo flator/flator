@@ -59,7 +59,7 @@ if ( $_POST["type"] == "uploadPhoto2"  && $_SESSION["demo"] != TRUE )
 		}
 if ( $_POST["type2"] == "uploadPhoto" )
 		{
-		echo "salam";
+		//echo "salam";
 			uploadPhotos($newAlbumId);
 		}
 
