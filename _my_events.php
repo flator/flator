@@ -31,7 +31,7 @@ else
 							$record = array();
 							$record["insDate"] = date("Y-m-d H:i:s");
 							$record["userId"] = (int)$_SESSION["userId"];
-							$record["statusMessage"] = "Lade till event \"<a href=\"http://www.flator.se/events.html\">".trim($addedeventArray[$key2]["name"])."</a>\" till sina events.";
+							$record["statusMessage"] = "Lade till event \"<a href=\"".$baseUrl."/events.html\">".trim($addedeventArray[$key2]["name"])."</a>\" till sina events.";
 							//echo $record["statusMessage"];
 							$record["statusType"] = "addedEvent";
 							$DB->AutoExecute( "fl_status", $record, 'INSERT' ); 
@@ -92,7 +92,7 @@ else
 
 			if ( $_FILES["image"]["name"] )
 			{
-				$dir = "/var/www/dev.flator.se/rwdx/user";
+				$dir = $serverRoot."/rwdx/user";
 
 				$validImageTypes = array( "image/jpg" => "jpg",
 										  "image/gif" => "gif",

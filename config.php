@@ -26,10 +26,11 @@ else
 #	error_reporting( 0 ); 
 #}
 echo $YearDiff;
-//$baseUrl = "http://dev.flator.se";  
-$baseUrl = "http://".$_SERVER["SERVER_NAME"]; 
+//$baseUrl = "http://dev.flator.se"; 
+//$serverRoot = "/var/www/dev.flator.se"; 
 //$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
 
+$baseUrl = "http://".$_SERVER["SERVER_NAME"]; 
 $serverRoot = $_SERVER["DOCUMENT_ROOT"];
 
 //echo "baseUrl".$baseUrl ."och serverRoot".$serverRoot ;   /////////////////////////////
