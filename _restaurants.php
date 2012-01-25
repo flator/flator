@@ -86,7 +86,7 @@ if ( count( $eventArray ) > 0 )
 <a href=\"http://maps.google.se/maps?f=q&hl=sv&q=" . urlencode( $eventArray[ $key ]["location"] . " " . $eventArray[ $key ]["city"] ) . "&z=16&iwloc=addr\" target=\"_blank\">" . $eventArray[ $key ]["location"] . "</a><br />";
 		if ( strlen( $eventDate ) > 0 )  ///////////////////////////////SHOW THE EVENT DATE IN EVENT PAGE
 		{
-		ECHO  $eventDate;  ///////////////DATE FOR EVENTS
+		//ECHO  $eventDate;  ///////////////DATE FOR EVENTS
 			$body.= "<span class=\"news_date\">" . $eventDate . "</span><br>";
 		}
 		$body.= strip_tags( stripslashes( $eventArray[ $key ]["description"] ), "<br><a>" ) . " <span class=\"news_location\">" . $eventArray[ $key ]["requirements"] . "</span><!-- <nobr><a href=\"events/" . $eventArray[ $key ]["id"] . ".html\">Läs mer »</a></nobr>-->";
