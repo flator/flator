@@ -2218,6 +2218,89 @@ break;
 		$menuFrontpage = false;
 		include( "_form_enkat.php" );
 		break;
+		//////////////////pouyan codes begin here 
+    case "Umgas.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_Umgas.php" );
+		break;
+	case "events forflator.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_events forflator.php" );
+		break;
+	case "Festbilder.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_Festbilder.php" );
+		break;
+	case "Videochat.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_Videochat.php" );
+		break;
+	case "Blogga.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_Blogga.php" );
+		break;
+	case "DelaFoto.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_DelaFoto.php" );
+		break;
+	case "SynligOsynlig.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_SynligOsynlig.php" );
+		break;
+	case "FlortaIHemlighet.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_FlortaIHemlighet.php" );
+		break;
+	case "Diskutera pa forumet.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_Diskutera pa forumet.php" );
+		break;
+      ////////////////////////////finish line for pouyan codes
 	default:
 		$loadAjax = TRUE;
 		$newCss = TRUE;

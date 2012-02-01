@@ -49,7 +49,7 @@ else
 				$profileImage = $DB->GetRow( $q, FALSE, TRUE );
 				if ( count( $profileImage ) > 0 )
 				{
-					$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace('http://www.flator.se/rwdx/user/', '', $profileImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\"  />";
+					$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace($usedImagesUrlPaths, '', $profileImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\"  />";
 
 				}
 				else
@@ -116,7 +116,7 @@ else
 				$profileImage = $DB->GetRow( $q, FALSE, TRUE );
 				if ( count( $profileImage ) > 0 )
 				{
-					$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace('http://www.flator.se/rwdx/user/', '', $profileImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\"  />";
+					$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace($usedImagesUrlPaths, '', $profileImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\"  />";
 
 				}
 				else
@@ -154,7 +154,7 @@ else
 				$profileImage = $DB->GetRow( $q, FALSE, TRUE );
 				if ( count( $profileImage ) > 0 )
 				{
-					$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace('http://www.flator.se/rwdx/user/', '', $profileImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\"  />";
+					$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace($usedImagesUrlPaths, '', $profileImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\"  />";
 				}
 				else
 				{
@@ -218,7 +218,7 @@ else
 				$profileImage = $DB->GetRow( $q, FALSE, TRUE );
 				if ( count( $profileImage ) > 0 )
 				{
-					$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace('http://www.flator.se/rwdx/user/', '', $profileImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\"  />";
+					$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace($usedImagesUrlPaths, '', $profileImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\"  />";
 				}
 				else
 				{

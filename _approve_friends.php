@@ -34,7 +34,7 @@ else
 						$record["insDate"] = date("Y-m-d H:i:s");
 						$record["userid"] = (int)$_SESSION["userId"];
 						
-						$record["statusMessage"] = "Blev vän med: <a href=\"http://www.flator.se/user/".$friendData["username"].".html\">".$friendData["username"]."</a>";
+						$record["statusMessage"] = "Blev vän med: <a href=\"" . $baseUrl . "/user/".$friendData["username"].".html\">".$friendData["username"]."</a>";
 						$record["mostRecent"] = "NO";
 						$record["statusType"] = "newFriend";
 						$DB->AutoExecute( "fl_status", $record, 'INSERT');
@@ -43,7 +43,7 @@ else
 						$record["insDate"] = date("Y-m-d H:i:s");
 						$record["userid"] = (int)$friendData["id"];
 						
-						$record["statusMessage"] = "Blev vän med: <a href=\"http://www.flator.se/user/".$userProfile["username"].".html\">".$userProfile["username"]."</a>";
+						$record["statusMessage"] = "Blev vän med: <a href=\"" . $baseUrl . "/user/".$userProfile["username"].".html\">".$userProfile["username"]."</a>";
 						$record["mostRecent"] = "NO";
 						$record["statusType"] = "newFriend";
 						$DB->AutoExecute( "fl_status", $record, 'INSERT');

@@ -36,9 +36,9 @@ $serverRoot = $_SERVER["DOCUMENT_ROOT"];
 //echo "baseUrl".$baseUrl ."och serverRoot".$serverRoot ;   /////////////////////////////
 
 $usedImagesServerPaths = array("/srv/www/htdocs/rwdx/photos/", "/var/www/rwdx/photos/", "/srv/www/htdocs/rwdx/user/", "/var/www/rwdx/user/", "/var/www/dev.flator.se/rwdx/photos/", "/var/www/dev.flator.se/rwdx/user/", "/var/www/flator.se/rwdx/photos/", "/var/www/flator.se/rwdx/user/");
-$usedImagesUrlPaths = array($baseUrl."/rwdx/user", $baseUrl."/rwdx/user");
+$usedImagesUrlPaths = array("http://dev.flator.se/rwdx/user", "http://www.flator.se/rwdx/user");
 
-/* Include the database library and open the connection */
+/* Include the database library and open the connection */ 
 include('adodb5/adodb.inc.php'); 
 $DB = NewADOConnection('mysql');
 if ( DEBUG_MODE == TRUE )

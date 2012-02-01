@@ -116,13 +116,13 @@ function uploadPhotos($newAlbumId = 0) {
 			 ini_set('post_max_size', '100M');
 			 ini_set('upload_max_filesize', '500M');
 
-			$folder = '/var/www/flator.se/rwdx/photos/';
+			$folder = '/var/www/dev.flator.se/rwdx/photos/';
 
 			$extension = "ffmpeg";
 
 			$extension_soname = $extension . "." . PHP_SHLIB_SUFFIX;
 			$extension_fullname = PHP_EXTENSION_DIR . "/" . $extension_soname;
-			
+	
 			if (!extension_loaded($extension)) {
 			dl($extension_soname) or die("Can't load extension $extension_fullname\n");
 			}
@@ -142,13 +142,14 @@ $moviepath = "movies/" ;
 			$i = 0;
 			foreach ($_FILES["bild"]["error"] as $key => $error) {
 				$alphanum = "APBHCPDEFGHIJKARLCAMDENSCPRIQPTRSTUVWXYZ123456789";
-				$rand = substr(str_shuffle($alphanum), 0, 3);
-
+				$rand =date("Ymd").substr(str_shuffle($alphanum), 0, 3);
+				//echo $rand;
 			
 
 				if ($error == UPLOAD_ERR_OK) {
 					#echo "File uploaded OK!";
 					$tmp_name = $_FILES["bild"]["tmp_name"][$key];
+					//echo $tmp_name;
 					$size = getimagesize($tmp_name);
 					//echo "Size: $size";
 					
@@ -164,6 +165,7 @@ $moviepath = "movies/" ;
 						{
 							echo "Fil finns";
 							$name = $rand.'_'.$name;
+							echo $name; 
 							$newpath = $folder.$name; 
 						}
 					if (move_uploaded_file($tmp_name, $newpath)) {
@@ -233,7 +235,7 @@ $moviepath = "movies/" ;
 						$record["description"] = addslashes( $_POST["description"] );
 						$record["albumId"] = addslashes( ($newAlbumId > 0 ? $newAlbumId : $_POST["album"]) );
 						$record["imageType"] = $imageType;
-						$record["imageUrl"] = addslashes( str_replace($folder, "http://www.flator.se/rwdx/photos/", $newpath) );
+						$record["imageUrl"] = addslashes( str_replace($folder, "http://dev.flator.se/rwdx/photos/", $newpath) );
 						$record["serverLocation"] = addslashes( $newpath );
 						$record["videoLocation"] = addslashes( $videopath );
 
