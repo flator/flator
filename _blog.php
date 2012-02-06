@@ -26,7 +26,7 @@ if ( $_POST["type"] == "commentBlog"  && $_SESSION["demo"] != TRUE )
 						$record["insDate"] = date("Y-m-d H:i:s");
 						$record["userid"] = (int)$userProfile["id"];
 						if (strlen($_POST["comment"])> 25) $_POST["comment"] = substr($_POST["comment"],0,25)." ...";
-						$record["statusMessage"] = "Kommenterade blogginlägg: <a href=\"http://www.flator.se/blogs/posts/".(int)$_POST["id"].".html\">".addslashes($_POST["comment"])."</a>";
+						$record["statusMessage"] = "Kommenterade blogginlägg: <a href=\"" . $baseUrl . "/blogs/posts/".(int)$_POST["id"].".html\">".addslashes($_POST["comment"])."</a>";
 						$record["mostRecent"] = "NO";
 						$record["statusType"] = "blogComment";
 						$DB->AutoExecute( "fl_status", $record, 'INSERT'); 
@@ -165,9 +165,9 @@ $body .= '<br /><br /><a href="'.$baseUrl.'/blogs/'.stripslashes( $userPres["use
 
 						//$body .= '<a href="http://www.flator.se/media/photos/'.$albumPhotos[ $key2 ]["id"].'.html">';
 						if (($i % 4) == 0) {
-						$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href='http://www.flator.se/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(http://www.flator.se/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."<br>";
+						$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href=".$baseUrl."'/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(".$baseUrl."/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."<br>";
 						} else {
-						$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href='http://www.flator.se/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(http://www.flator.se/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."";
+						$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href=".$baseUrl."'/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(".$baseUrl."/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."";
 						}
 						$body .= '</a>';
 					}

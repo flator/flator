@@ -86,7 +86,7 @@ if ( $_POST )
 		$rowUser = $DB->GetRow( $q, FALSE, TRUE );
 		if ( count( $rowUser ) > 0 )
 		{
-			$message.= "<li><b>Personen</b> med detta personnummer &auml;r redan medlem. <a href=\"http://www.flator.se/reset_password.html\">Glömt ditt lösenord?</a></li>";
+			$message.= "<li><b>Personen</b> med detta personnummer &auml;r redan medlem. <a href=\"" . $baseUrl . "/reset_password.html\">Glömt ditt lösenord?</a></li>";
 		}
 
 	/*
@@ -136,7 +136,7 @@ if ( $_POST )
 		#else
 		#{
 			$record["rights"] = 2; // Member needs to confirm e-mailaddress.
-			$thankyou = "<li>Du &auml;r <b>nu</b> en registrerad medlem p&aring; Flator.se! <a href=\"http://www.flator.se/\">Klicka h&auml;r</a> f&ouml;r att komma till hemsidan och logga in.<br></li>";
+			$thankyou = "<li>Du &auml;r <b>nu</b> en registrerad medlem p&aring; Flator.se! <a href=\"" . $baseUrl . "/\">Klicka h&auml;r</a> f&ouml;r att komma till hemsidan och logga in.<br></li>";
 			$thankyou.= "<li>Ett mail har skickats till din e-postadress d&auml;r du ombeds <b>bekr&auml;fta adressen</b>. Innan du gjort detta kommer andra medlemmar inte att kunna se din profil och du kommer inte kunna skicka meddelanden.</li>";
 		#}
 		#if ( $userId > 0 )
@@ -266,7 +266,7 @@ $body .= "<p><label for=\"username\">Anv&auml;ndarnamn:</label> <input type=\"te
 <p class=\"verification\">Ange koden i f&auml;ltet nedan.</p>
 <p><label for=\"verification\">S&auml;kerhetskod:</label> <input type=\"text\" id=\"verification\" name=\"verification\" /></p>
 
-<p style=\"margin-top: 30px;\">Genom att registrera dig på Flator.se godkänner du våra <strong><a href=\"http://www.flator.se/member_terms.html\" target=\"_blank\">medlemsvillkor</a></strong>.<br>
+<p style=\"margin-top: 30px;\">Genom att registrera dig på Flator.se godkänner du våra <strong><a href=\"" . $baseUrl . "/member_terms.html\" target=\"_blank\">medlemsvillkor</a></strong>.<br>
 Kontrollera uppgifterna du angivit, falska eller felaktiga uppgifter leder till avstängning.</p>
 <p class=\"submit\"><input type=\"submit\" value=\"Skapa konto\" /></p>
 

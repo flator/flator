@@ -287,9 +287,9 @@ $q = "SELECT * FROM fl_images WHERE imageType = 'albumPhoto' AND userId = ".(int
 if ( $editPresentation == TRUE )
 {
 	$body.= "<div style=\"margin-bottom: 0x; margin-top: 30px\">" . $avatar ."</div>\n";
-	$body.= "<div style=\"border-bottom: 1px dotted #c8c8c8; margin-top:5px; padding-bottom:5px;\"><span onMouseOver=\"document.newPP_onpres.src='" . $baseUrl . "/img/symbols/gif_red/ladda_upp_bild.gif'\" onMouseOut=\"document.newPP_onpres.src='" . $baseUrl . "/img/symbols/gif_purple/ladda_upp_bild.gif'\"><a href=\"http://dev.flator.se/media/".stripslashes( $userPres["username"] ).".html\" style=\"font-weight: normal; line-height: 22px\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/ladda_upp_bild.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"newPP_onpres\" /><a href=\"#noexist\" onClick=\"showPopup('popupProfileImage');\" style=\"font-weight: normal; line-height: 22px\">&nbsp;&nbsp;Byt profilbild</a></span></div>";
+	$body.= "<div style=\"border-bottom: 1px dotted #c8c8c8; margin-top:5px; padding-bottom:5px;\"><span onMouseOver=\"document.newPP_onpres.src='" . $baseUrl . "/img/symbols/gif_red/ladda_upp_bild.gif'\" onMouseOut=\"document.newPP_onpres.src='" . $baseUrl . "/img/symbols/gif_purple/ladda_upp_bild.gif'\"><a href=\'" . $baseUrl . "/media/".stripslashes( $userPres["username"] ).".html\" style=\"font-weight: normal; line-height: 22px\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/ladda_upp_bild.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"newPP_onpres\" /><a href=\"#noexist\" onClick=\"showPopup('popupProfileImage');\" style=\"font-weight: normal; line-height: 22px\">&nbsp;&nbsp;Byt profilbild</a></span></div>";
 	if (count($images) > 0) {
-	$body .= "<div style=\"border-bottom: 1px dotted #c8c8c8; margin-top:5px; padding-bottom:5px;\"><span onMouseOver=\"document.myPictures_onpres.src='" . $baseUrl . "/img/symbols/gif_red/bild.gif'\" onMouseOut=\"document.myPictures_onpres.src='" . $baseUrl . "/img/symbols/gif_purple/bild.gif'\"><a href=\"http://dev.flator.se/media/".stripslashes( $userPres["username"] ).".html\" style=\"font-weight: normal; line-height: 22px\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/bild.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"myPictures_onpres\" />&nbsp;&nbsp;Se fler av mina bilder</a></span></div>";
+	$body .= "<div style=\"border-bottom: 1px dotted #c8c8c8; margin-top:5px; padding-bottom:5px;\"><span onMouseOver=\"document.myPictures_onpres.src='" . $baseUrl . "/img/symbols/gif_red/bild.gif'\" onMouseOut=\"document.myPictures_onpres.src='" . $baseUrl . "/img/symbols/gif_purple/bild.gif'\"><a href=\'" . $baseUrl . "/media/".stripslashes( $userPres["username"] ).".html\" style=\"font-weight: normal; line-height: 22px\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/bild.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"myPictures_onpres\" />&nbsp;&nbsp;Se fler av mina bilder</a></span></div>";
 	}
 }
 else
@@ -327,7 +327,7 @@ else
 					</div>";
 	}
 	if (count($images) > 0) {
-	$body .= "<div style=\"border-bottom: 1px dotted #c8c8c8; margin-top:5px; padding-bottom:5px;\"><span onMouseOver=\"document.myPictures_onpres.src='" . $baseUrl . "/img/symbols/gif_red/bild.gif'\" onMouseOut=\"document.myPictures_onpres.src='" . $baseUrl . "/img/symbols/gif_purple/bild.gif'\"><a href=\"http://dev.flator.se/media/".stripslashes( $userPres["username"] ).".html\" style=\"font-weight: normal; line-height: 22px\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/bild.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"myPictures_onpres\" />&nbsp;&nbsp;Se fler av mina bilder</a></span></div>";
+	$body .= "<div style=\"border-bottom: 1px dotted #c8c8c8; margin-top:5px; padding-bottom:5px;\"><span onMouseOver=\"document.myPictures_onpres.src='" . $baseUrl . "/img/symbols/gif_red/bild.gif'\" onMouseOut=\"document.myPictures_onpres.src='" . $baseUrl . "/img/symbols/gif_purple/bild.gif'\"><a href=\'" . $baseUrl . "/media/".stripslashes( $userPres["username"] ).".html\" style=\"font-weight: normal; line-height: 22px\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/bild.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"myPictures_onpres\" />&nbsp;&nbsp;Se fler av mina bilder</a></span></div>";
 	}
 }
 $images = array();
@@ -453,7 +453,7 @@ if ($editPresentation == FALSE) {
 		if ($_SESSION["invitationSent"] == TRUE) {
 			$body.= "<script type=\"text/javascript\">
 
-window.open('http://dev.flator.se/videochatt/','videochat','width=800,height=620');
+window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 </script>
 ";
 		}
@@ -570,9 +570,9 @@ window.open('http://dev.flator.se/videochatt/','videochat','width=800,height=620
 				$onlineTime = "" . date( "Y-m-d", $commentedPhoto["unixTime"] ) . "";
 			}
 
-			$mediumAvatar = "http://dev.flator.se/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $commentedPhoto["serverLocation"])) . "/large/";
+			$mediumAvatar ="" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $commentedPhoto["serverLocation"])) . "/large/";
 
-			$avatar = "<img src=\"http://dev.flator.se/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $commentedPhoto["serverLocation"])) . "/small-blog/\" border=\"0\" style=\"float:left;\" align=\"left\"/>";
+			$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $commentedPhoto["serverLocation"])) . "/small-blog/\" border=\"0\" style=\"float:left;\" align=\"left\"/>";
 			
 
 
@@ -605,7 +605,7 @@ window.open('http://dev.flator.se/videochatt/','videochat','width=800,height=620
 			}
 
 
-			$userStatus[ $key ]["statusMessage"] = '<a href=\"'.$baseUrl.'/media/photos/'.$commentedPhoto["id"].'.html\"><i>'.$commentedPhoto["name"].'</i></a><span class="email_date"> av </span><a href=\"'.$baseUrl.'/user/'.stripslashes($commentedPhoto["username"]).'.html\">'.$commentedPhoto["username"].'</a> <span class="email_date">uppladdad '.$onlineTime.'</span><br><span class="email_date">Bild ur albumet</span> "<a href="http://dev.flator.se/media/album/'.$commentedPhoto["albumId"].'.html">'.$commentedPhoto["albumName"].'</a>"';
+			$userStatus[ $key ]["statusMessage"] = '<a href=\"'.$baseUrl.'/media/photos/'.$commentedPhoto["id"].'.html\"><i>'.$commentedPhoto["name"].'</i></a><span class="email_date"> av </span><a href=\"'.$baseUrl.'/user/'.stripslashes($commentedPhoto["username"]).'.html\">'.$commentedPhoto["username"].'</a> <span class="email_date">uppladdad '.$onlineTime.'</span><br><span class="email_date">Bild ur albumet</span> "<a href="' . $baseUrl . '/media/album/'.$commentedPhoto["albumId"].'.html">'.$commentedPhoto["albumName"].'</a>"';
 	
 			$userStatus[ $key ]["statusMessage"] .= "<div style=\"position:relative;\"><div id=\"popupMediumCommentedImage".$key."\" style=\"display: none; position:absolute;border: 2px solid #645d54; top: 0px; left: 0px; z-index: 101; background-color: #ffffff; \"><div style=\"margin: 0px;\"><div style=\"float: left; display: block;\"><a href=\"javascript:void(null)\" onclick=\"closeImage2('popupMediumCommentedImage".$key."');\"><img src=\"".$baseUrl."/img/symbols/gif_avatars/person_avantar_stor.gif\" id=\"mediumCommentedImage".$key."\" border=\"0\" style=\"margin: 3px;\" /></a></div></div></div></div>";
 
@@ -652,9 +652,9 @@ window.open('http://dev.flator.se/videochatt/','videochat','width=800,height=620
 				$onlineTime = "" . date( "Y-m-d", $commentedPhoto["unixTime"] ) . "";
 			}
 
-			$mediumAvatar = "http://dev.flator.se/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $commentedPhoto["serverLocation"])) . "/large/";
+			$mediumAvatar =""  . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $commentedPhoto["serverLocation"])) . "/large/";
 
-			$avatar = "<img src=\"http://dev.flator.se/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $commentedPhoto["serverLocation"])) . "/small-blog/\" border=\"0\" style=\"float:left;\" align=\"left\"/>";
+			$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $commentedPhoto["serverLocation"])) . "/small-blog/\" border=\"0\" style=\"float:left;\" align=\"left\"/>";
 			
 
 
@@ -669,7 +669,7 @@ window.open('http://dev.flator.se/videochatt/','videochat','width=800,height=620
 			}
 
 
-			$userStatus[ $key ]["statusMessage"] = '<span class=\"email_date\">Blev taggad i bilden</span> <a href=\"http://dev.flator.se/media/photos/'.$commentedPhoto["id"].'.html\"><i>'.$commentedPhoto["name"].'</i></a> <span class="email_date">från albumet</span> "<a href="http://dev.flator.se/media/album/'.$commentedPhoto["albumId"].'.html">'.$commentedPhoto["albumName"].'</a>"<span class="email_date"> av </span><a href=\"http://dev.flator.se/user/'.stripslashes($commentedPhoto["username"]).'.html\">'.$commentedPhoto["username"].'</a>';
+			$userStatus[ $key ]["statusMessage"] = '<span class=\"email_date\">Blev taggad i bilden</span> <a href=\"' . $baseUrl . '/media/photos/'.$commentedPhoto["id"].'.html\"><i>'.$commentedPhoto["name"].'</i></a> <span class="email_date">från albumet</span> "<a href="' . $baseUrl . '/media/album/'.$commentedPhoto["albumId"].'.html">'.$commentedPhoto["albumName"].'</a>"<span class="email_date"> av </span><a href=\"' . $baseUrl . '/user/'.stripslashes($commentedPhoto["username"]).'.html\">'.$commentedPhoto["username"].'</a>';
 	
 			$userStatus[ $key ]["statusMessage"] .= "<div style=\"position:relative;\"><div id=\"popupMediumCommentedImage".$key."\" style=\"display: none; position:absolute;border: 2px solid #645d54; top: 0px; left: 0px; z-index: 101; background-color: #ffffff; \"><div style=\"margin: 0px;\"><div style=\"float: left; display: block;\"><a href=\"javascript:void(null)\" onclick=\"closeImage2('popupMediumCommentedImage".$key."');\"><img src=\"".$baseUrl."/img/symbols/gif_avatars/person_avantar_stor.gif\" id=\"mediumCommentedImage".$key."\" border=\"0\" style=\"margin: 3px;\" /></a></div></div></div></div>";
 
@@ -707,24 +707,24 @@ if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 
 
 			if ($userStatus[ $key ]["statusType"] == "newPhotosUploaded") {
-			$symbol = '<img src="http://dev.flator.se/img/symbols/gif_purple/bild.gif" style="vertical-align:top;margin-top:3px;" border="0">';
+			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/bild.gif" style="vertical-align:top;margin-top:3px;" border="0">';
 			} elseif ($userStatus[ $key ]["statusType"] == "personalMessage") {
-			$symbol = '<img src="http://dev.flator.se/img/symbols/gif_purple/logga_in.gif" style="vertical-align:top;margin-top:3px;" border="0">';
+			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/logga_in.gif" style="vertical-align:top;margin-top:3px;" border="0">';
 			} elseif ($userStatus[ $key ]["statusType"] == "newFriend") {
-			$symbol = '<img src="http://dev.flator.se/img/symbols/gif_purple/van.gif" style="vertical-align:top;margin-top:3px;" border="0">';
+			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/van.gif" style="vertical-align:top;margin-top:3px;" border="0">';
 			} elseif ($userStatus[ $key ]["statusType"] == "blogEntry") {
-			$symbol = '<img src="http://dev.flator.se/img/symbols/gif_purple/blogg.gif" style="vertical-align:top;margin-top:3px;" border="0">';
+			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/blogg.gif" style="vertical-align:top;margin-top:3px;" border="0">';
 			} elseif ($userStatus[ $key ]["statusType"] == "blogComment") {
-			$symbol = '<img src="http://dev.flator.se/img/symbols/gif_purple/lamna_kommentar.gif" style="vertical-align:top;margin-top:3px;" border="0">';
+			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/lamna_kommentar.gif" style="vertical-align:top;margin-top:3px;" border="0">';
 			} elseif ($userStatus[ $key ]["statusType"] == "addedEvent") {
-			$symbol = '<img src="http://dev.flator.se/img/symbols/gif_purple/typ_av_event.gif" style="vertical-align:top;margin-top:3px;" border="0">';
+			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/typ_av_event.gif" style="vertical-align:top;margin-top:3px;" border="0">';
 			} elseif ($userStatus[ $key ]["statusType"] == "photoComment") {
-			$symbol = '<img src="http://dev.flator.se/img/symbols/gif_purple/bild.gif" style="vertical-align:top;margin-top:6px;"  border="0">';
+			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/bild.gif" style="vertical-align:top;margin-top:6px;"  border="0">';
 			//$symbol = $currentcommentedPhoto;
 			} elseif ($userStatus[ $key ]["statusType"] == "tagStatus") {
-			$symbol = '<img src="http://dev.flator.se/img/symbols/gif_purple/tagga2.gif" style="vertical-align:top;margin-top:6px;" border="0">';
+			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/tagga2.gif" style="vertical-align:top;margin-top:6px;" border="0">';
 			} elseif ($userStatus[ $key ]["statusType"] == "forumEntry") {
-			$symbol = '<img src="http://dev.flator.se/img/symbols/gif_purple/grupp.gif" style="vertical-align:top;margin-top:3px;" border="0">';
+			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/grupp.gif" style="vertical-align:top;margin-top:3px;" border="0">';
 			} else {
 			$symbol = "";
 			}
@@ -749,7 +749,7 @@ if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 
 							$body.= "<span class=\"presStatus\"> <span class=\"status_history\"><span class=\"email_date\">Laddade upp:</span> " . count( $albumPhotos ) . " ".$photoString.".</span> <span class=\"email_date\">" . $eventDate . "</span>\n";
 
-									$body .= "<div style=\"float:left; background: url('http://dev.flator.se/img/meny_pil_gif.gif') no-repeat 7px 0px; padding-top:10px; margin-top:3px; margin-bottom:5px;\"><div style=\"float:left; padding-top:5px; padding-left:5px; padding-bottom:5px;margin-right:10px; margin-top:0px; border: 1px dotted #c8c8c8; max-width:200px;\">";
+									$body .= "<div style=\"float:left; background: url(" . $baseUrl . "/img/meny_pil_gif.gif') no-repeat 7px 0px; padding-top:10px; margin-top:3px; margin-bottom:5px;\"><div style=\"float:left; padding-top:5px; padding-left:5px; padding-bottom:5px;margin-right:10px; margin-top:0px; border: 1px dotted #c8c8c8; max-width:200px;\">";
 
 									$albumPhotosString = "";
 									$i = 1;
@@ -764,11 +764,11 @@ if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 									$removeThumb = "";
 									
 
-									//$body .= '<a href="http://dev.flator.se/media/photos/'.$albumPhotos[ $key2 ]["id"].'.html">';
+									//$body .= '<a href="' . $baseUrl . '/media/photos/'.$albumPhotos[ $key2 ]["id"].'.html">';
 									if (($i % 4) == 0) {
-									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href='http://dev.flator.se/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(http://dev.flator.se/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."<br>";
+									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href=" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."<br>";
 									} else {
-									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href='http://dev.flator.se/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(http://dev.flator.se/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."";
+									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href=" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."";
 									}
 									$body .= '</a>';
 								}
@@ -794,7 +794,7 @@ if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 
 
 			if (count($userStatusComments[$key]) > 0) {
-				$body .= "<div style=\"float:left; background: url('http://dev.flator.se/img/meny_pil_gif.gif') no-repeat 0px 0px; padding-top:8px;margin-left:0px; margin-top:5px; \" id=\"statusComment".$key."\" >";
+				$body .= "<div style=\"float:left; background: url('" . $baseUrl . "/img/meny_pil_gif.gif') no-repeat 0px 0px; padding-top:8px;margin-left:0px; margin-top:5px; \" id=\"statusComment".$key."\" >";
 				while ( list( $key3, $value3 ) = each( $userStatusComments[$key] ) )
 					{
 					$q = "SELECT * FROM fl_images WHERE userId = " . (int)$userStatusComments[$key][ $key3 ]["userId"] . " AND imageType = 'profileSmall'";
@@ -914,7 +914,7 @@ if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 			
 			if ($userStatus[ $key ]["statusType"] == "personalMessage") { 
 				
-					$body .= "<tr><td colspan=\"3\"><div style=\" background: url('http://dev.flator.se/img/meny_pil_gif.gif') no-repeat 7px 2px; padding-top:0px;display:none; \" id=\"statusComment".$key."\" ><table width=\"370px\" border=\"0\" cellpadding=\"0px\" cellspacing=\"4px\" style=\"margin-left:0px; border: 1px dotted #c8c8c8; margin-top:10px;padding:0px; background-color:#C8C8C8;\">";
+					$body .= "<tr><td colspan=\"3\"><div style=\" background: url(" . $baseUrl . "/img/meny_pil_gif.gif') no-repeat 7px 2px; padding-top:0px;display:none; \" id=\"statusComment".$key."\" ><table width=\"370px\" border=\"0\" cellpadding=\"0px\" cellspacing=\"4px\" style=\"margin-left:0px; border: 1px dotted #c8c8c8; margin-top:10px;padding:0px; background-color:#C8C8C8;\">";
 					$body .= "<tr style=\" width:100%;\">";
 					$body .= "<td width=\"100%\" valign=\"top\" style=\"font-size:12px; background-color:#fff;\" class=\"commentBox\">
 					<form method=\"POST\"  style=\"margin: 0px; padding: 0px\">

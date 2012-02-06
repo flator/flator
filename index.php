@@ -2246,14 +2246,14 @@ break;
 		$divPopup = TRUE;
 		include( "_Festbilder.php" );
 		break;
-	case "Videochat.html":
+	case "Videochatinsidebar.html":
 		$loadAjax = TRUE;
 		$newCss = TRUE;
 		$jsConfirmSubmit = TRUE;
 		//$memberMenu = FALSE;
 #		$tinyMce = TRUE;
 		$divPopup = TRUE;
-		include( "_Videochat.php" );
+		include( "_Videochatinsidebar.php" );
 		break;
 	case "Blogga.html":
 		$loadAjax = TRUE;

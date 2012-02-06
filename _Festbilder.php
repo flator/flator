@@ -6,10 +6,10 @@ $body = "<div id=\"center\"><div style=\"padding-top: 12px; border-top: 1px dott
 <br><br><br></div>";
 
 $body .= "
-<img src=\"".$baseUrl."/img/start.gif\" border=\"0\" alt=\"Flator.se fÃ¶rsÃ¶ker sÃ¥ lÃ¥ngt det gÃ¥r samla alla bilder frÃ¥n roliga event Ã¶ver hela Sverige. Bli medlem och se om du finns med pÃ¥ nÃ¥gon bild!\">";
+<img src=\"".$baseUrl."/img/fest.jpg\" border=\"0\" ><br><br>";
 
 $body .= "
-<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br>Varit på något av alla de event du hittar i vår eventkalender? Kanske har du också fastnad på bild?
+<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br><span style=\"font-weight:bold; font-size:16px;\">Festbilder</span><br><br>Varit på något av alla de event du hittar i vår eventkalender? Kanske har du också fastnad på bild?
 Som medlem så kan du titta på många bilder från många av de eventen som arrangeras runt om i Sverige.
 Spana in våra festbilder genom att bli medlem reda idag!
 <br><br></div>

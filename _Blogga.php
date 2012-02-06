@@ -6,10 +6,10 @@ $body = "<div id=\"center\"><div style=\"padding-top: 12px; border-top: 1px dott
 <br><br><br></div>";
 
 $body .= "
-<img src=\"".$baseUrl."/img/start.gif\" border=\"0\" alt=\"Hos Flator.se har du din egna blogg som du kan skriva om vad du vill i. BÃ¤st av allt, det Ã¤r bara andra lesbiska som kommer lÃ¤sa. Bli medlem idag!\">";
+<img src=\"".$baseUrl."/img/blogg.jpg\" border=\"0\" ><br><br>";
 
 $body .= "
-<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br>En viktig funktion du har tillgång till som medlem är möjligheten att blogga. 
+<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br><span style=\"font-weight:bold; font-size:16px;\">Blogga</span><br><br>En viktig funktion du har tillgång till som medlem är möjligheten att blogga. 
 Du har möjligheten att ventilera åsikter och händelser i din vardag inför stängda dörrar och inför en publik som inte på något sätt är dömande eller ifrågasättande.
 Som dagbok eller bara som en ventil då och då, det bestämmer du själv!
 Bli medlem och skriv ditt första blogginlägg redan idag!

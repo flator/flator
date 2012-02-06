@@ -6,10 +6,10 @@ $body = "<div id=\"center\"><div style=\"padding-top: 12px; border-top: 1px dott
 <br><br><br></div>";
 
 $body .= "
-<img src=\"".$baseUrl."/img/start.gif\" border=\"0\" alt=\"En av de stora behÃ¥llningarna med att vara medlem pÃ¥ Flator.se Ã¤r vÃ¥ra sprudlande forum. Bli medlem idag och bÃ¶rja diskutera.\">";
+<img src=\"".$baseUrl."/img/forum.jpg\" border=\"0\" ><br><br>";
 
 $body .= "
-<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br>En av de stora behållningarna med att vara medlem på Flator.se är våra sprudlande forum. Här har du möjligheten att diskutera högt som lågt utan att någon dömer eller ifrågasätter.
+<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br><span style=\"font-weight:bold; font-size:16px;\">Diskutera på forumet</span><br><br>En av de stora behållningarna med att vara medlem på Flator.se är våra sprudlande forum. Här har du möjligheten att diskutera högt som lågt utan att någon dömer eller ifrågasätter.
 I vårt forum kan du bland annat diskutera, adoption, arbete och studier, böcker, film, foto, kärlek och samhälle. Många fler områden väntar för dig som blir medlem.
 Vad väntar du då? Ge dig in i debatten!
 <br><br></div>

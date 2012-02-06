@@ -6,10 +6,10 @@ $body = "<div id=\"center\"><div style=\"padding-top: 12px; border-top: 1px dott
 <br><br><br></div>";
 
 $body .= "
-<img src=\"".$baseUrl."/img/start.gif\" border=\"0\" alt=\"Med medlemmar Ã¶ver hela Sverige sÃ¥ Ã¤r Flator.se en naturligt samlingspunkt fÃ¶r event av flator. Se vad som hÃ¤nder nÃ¤ra dig. Bli medlem idag!\">";
+<img src=\"".$baseUrl."/img/events.jpg\" border=\"0\" ><br><br>";
 
 $body .= "
-<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br>Med medlemmar spridda över hela Sverige så vill vi på Flator.se vara den givna knutpunkten när det kommer till information om event, för, av och om flator runt i Sverige.
+<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br><span style=\"font-weight:bold; font-size:16px;\">Events för flator</span><br><br>Med medlemmar spridda över hela Sverige så vill vi på Flator.se vara den givna knutpunkten när det kommer till information om event, för, av och om flator runt i Sverige.
 I vår digra kalender så kommer du kunna hitta alla typer av event, vare sig det är föreläsningar eller klubbkvällar. Passar det inom ramen för Flator.se så passar det i vår kalender. Vi har alltid något för alla.
 Kalendern hittar du om du blir medlem!
  <br><br></div>

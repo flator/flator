@@ -6,10 +6,10 @@ $body = "<div id=\"center\"><div style=\"padding-top: 12px; border-top: 1px dott
 <br><br><br></div>";
 
 $body .= "
-<img src=\"".$baseUrl."/img/start.gif\" border=\"0\" alt=\"Flator.se Ã¤r odiskutabelt Sveriges stÃ¶rsta samlingsplats fÃ¶r lesbiska och bisexuella kvinnor. LÃ¤s mer om vÃ¥r webbplats och bli medlem redan idag!\">";
+<img src=\"".$baseUrl."/img/bilder.jpg\" border=\"0\" ><br><br>";
 
 $body .= "
-<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br>Varit på underbar semester och har kameran full med bilder?
+<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br><span style=\"font-weight:bold; font-size:16px;\">Videochat</span><br><br>Varit på underbar semester och har kameran full med bilder?
 En bild säger mer än 1000 ord och det stämmer även på Flator.se. Här finns möjligheten att dela bilder och filmklipp för alla att titta på.
 Bli medlem nu och ladda upp dina bästa bilder redan idag! 
 <br><br></div>

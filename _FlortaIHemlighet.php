@@ -6,10 +6,10 @@ $body = "<div id=\"center\"><div style=\"padding-top: 12px; border-top: 1px dott
 <br><br><br></div>";
 
 $body .= "
-<img src=\"".$baseUrl."/img/start.gif\" border=\"0\" alt=\"PÃ¥ Flator.se kan du skicka ivÃ¤g en oskyld flÃ¶rt helt i hemlighet som ingen annan ser. Bli medlem idag och skicka din fÃ¶rsla flirt!\">";
+<img src=\"".$baseUrl."/img/flirt.jpg\" border=\"0\" ><br><br>";
 
 $body .= "
-<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br>Gillar du det du ser?
+<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br><span style=\"font-weight:bold; font-size:16px;\">Flörta i hemlighet</span><br><br>Gillar du det du ser?
 På Flator.se kan du skicka iväg en oskyld flört helt i hemlighet som ingen annan ser. Spännande, roligt och kanske vägen till den stora kärleken?
 Börja flörta! Bli medlem idag!
 <br><br></div>

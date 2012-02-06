@@ -1758,7 +1758,7 @@ $body .= "
 	<td align=\"left\" valign=\"middle\" style=\"line-height: 8px\" >&nbsp;</td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/sok.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"keepConnected\">&nbsp;&nbsp;	<a href=\"http://dev.flator.se/Umgas.html\">Umgås & träffa lesbiska online</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/sok.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"keepConnected\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Umgas.html\">Umgås & träffa lesbiska online</a></td>
 
  </tr>";
  		$body.= " <tr>
@@ -1768,7 +1768,7 @@ $body .= "
 	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/tipsa_om_flator_se.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"partyImages\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Festbilder.html\">Festbilder</a></td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/chat.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"videoChat\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Videochat.html\">Videochat</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/chat.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"videoChat\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Videochatinsidebar.html\">Videochat</a></td>
  </tr>";
  		$body.= " <tr>
 	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/blogg.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"Blogga\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Blogga.html\">Blogga</a></td>

@@ -6,10 +6,10 @@ $body = "<div id=\"center\"><div style=\"padding-top: 12px; border-top: 1px dott
 <br><br><br></div>";
 
 $body .= "
-<img src=\"".$baseUrl."/img/start.gif\" border=\"0\" alt=\"Hos Flator.se sÃ¥ kan du du inte bara kommunicer i text. Vi erbjuder Ã¤ven videochat fÃ¶r dig som vill se andra Ã¶ga mot Ã¶ga. Bli  medlem idag!\">";
+<img src=\"".$baseUrl."/img/videochatt.jpg\" border=\"0\" ><br><br>";
 
 $body .= "
-<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br>Med text och bild så kan man nå långt, men kanske inte hela vägen.
+<div style=\"padding-top: 4px; border-top: 1px dotted #c8c8c8;padding-bottom:4px;\"><br><span style=\"font-weight:bold; font-size:16px;\">Videochat</span><br><br>Med text och bild så kan man nå långt, men kanske inte hela vägen.
 En av de funktioner som vi är mycket stolta över här på Flator.se är vår videochatt. Nu kan du bokstavligen talat möta andra flator öga mot öga. 
 Du ska bli medlem och testa tycker vi!
 <br><br></div>
