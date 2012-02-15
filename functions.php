@@ -116,7 +116,7 @@ function uploadPhotos($newAlbumId = 0) {
 			 ini_set('post_max_size', '100M');
 			 ini_set('upload_max_filesize', '500M');
 
-			$folder = '/var/www/dev.flator.se/rwdx/photos/';
+			$folder = '/var/www/flator.se/rwdx/photos/';
 
 			$extension = "ffmpeg";
 
@@ -235,7 +235,7 @@ $moviepath = "movies/" ;
 						$record["description"] = addslashes( $_POST["description"] );
 						$record["albumId"] = addslashes( ($newAlbumId > 0 ? $newAlbumId : $_POST["album"]) );
 						$record["imageType"] = $imageType;
-						$record["imageUrl"] = addslashes( str_replace($folder, "http://dev.flator.se/rwdx/photos/", $newpath) );
+						$record["imageUrl"] = addslashes( str_replace($folder, $baseUrl."/rwdx/photos/", $newpath) );
 						$record["serverLocation"] = addslashes( $newpath );
 						$record["videoLocation"] = addslashes( $videopath );
 

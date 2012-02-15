@@ -68,12 +68,20 @@ if ( (int)$_SESSION["rights"] > 1 )
 
 	if ( $userProfile["visible"] == "YES" )
 	{
-		$record = array();
-		$record["insDate"] = date("Y-m-d H:i:s");
-		$record["userId"] = (int)$_SESSION["userId"];
-		$DB->AutoExecute( "fl_users_online", $record, 'INSERT' ); 
-		$record = array();
+        //$qd="DELETE FROM fl_users_online WHERE userId='".(int)$_SESSION["userId"]."'";
+		//mysql_query($qd);
 
+		 
+		$record = array();
+		$record["insDate"] = date('Y-m-d H:i:s');
+		$record["userId"] = (int)$_SESSION["userId"];
+		 
+
+		$DB->AutoExecute( "fl_users_online", $record, 'INSERT' );     
+
+		$record = array();
+		
+		
 		$record["lastVisibleOnline"] = date("Y-m-d H:i:s");
 		$DB->AutoExecute( "fl_users", $record, 'UPDATE', 'id =  '.(int)$_SESSION["userId"]); 
 	}

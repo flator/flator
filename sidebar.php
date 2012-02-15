@@ -1648,6 +1648,11 @@ $body .= "<table border=\"0\" width=\"100%\" style=\"font-size: 12px; margin-bot
 <!--	<td align=\"right\" valign=\"bottom\" style=\"border-bottom: 1px dotted #c8c8c8;\"><span class=\"other_link\"><a href=\"#\">edit</a></span><span style=\"color: #b28aa6;\">&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href=\"#\"><img src=\"" . $baseUrl . "/img/kryss_edit.gif\" name=\"quickLinksX\" border=\"0\" onMouseOver=\"document.quickLinksX.src='" . $baseUrl . "/img/kryss_edit_red.gif'\" onMouseOut=\"document.quickLinksX.src='" . $baseUrl . "/img/kryss_edit.gif'\"></a></td>-->
  </tr>";
 
+  $body .= "
+  <tr>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\"><span onMouseOver=\"document.senasteHandelserna.src='" . $baseUrl . "/img/symbols/gif_red/nyast.gif'\" onMouseOut=\"document.senasteHandelserna.src='" . $baseUrl . "/img/symbols/gif_purple/nyast.gif'\"><a href=\"" . $baseUrl . "/senasteHandelserna.html\" style=\"font-weight: normal\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/nyast.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"senasteHandelserna\">&nbsp;&nbsp;Senaste Händelserna</a></span></td>
+ </tr>";
+ 
  $body .= "
   <tr>
 	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\"><span onMouseOver=\"document.sidoKnappOnline.src='" . $baseUrl . "/img/symbols/gif_red/valj_region.gif'\" onMouseOut=\"document.sidoKnappOnline.src='" . $baseUrl . "/img/symbols/gif_purple/valj_din_region.gif'\"><a href=\"" . $baseUrl . "/search.html?SearchQuery=&order=online\" style=\"font-weight: normal\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/valj_din_region.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"sidoKnappOnline\">&nbsp;&nbsp;Online just nu</a></span></td>
@@ -1758,32 +1763,32 @@ $body .= "
 	<td align=\"left\" valign=\"middle\" style=\"line-height: 8px\" >&nbsp;</td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/sok.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"keepConnected\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Umgas.html\">Umgås & träffa lesbiska online</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/sok.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"keepConnected\">&nbsp;&nbsp;<a href=\"".$baseUrl."/Umgas.html\">Umgås & träffa lesbiska online</a></td>
 
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/bjud_in_vanner.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"events\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/events forflator.html\">Events för flator</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/bjud_in_vanner.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"events\">&nbsp;&nbsp;<a href=\"".$baseUrl."/events forflator.html\">Events för flator</a></td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/tipsa_om_flator_se.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"partyImages\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Festbilder.html\">Festbilder</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/tipsa_om_flator_se.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"partyImages\">&nbsp;&nbsp;<a href=\"".$baseUrl."/Festbilder.html\">Festbilder</a></td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/chat.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"videoChat\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Videochatinsidebar.html\">Videochat</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/chat.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"videoChat\">&nbsp;&nbsp;<a href=\"".$baseUrl."/Videochatinsidebar.html\">Videochat</a></td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/blogg.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"Blogga\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Blogga.html\">Blogga</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/blogg.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"Blogga\">&nbsp;&nbsp;<a href=\"".$baseUrl."/Blogga.html\">Blogga</a></td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/grupp.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"sharePhotos\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/DelaFoto.html\">Dela foton & filmklipp</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/grupp.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"sharePhotos\">&nbsp;&nbsp;<a href=\"".$baseUrl."/DelaFoto.html\">Dela foton & filmklipp</a></td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/mest_sedda.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"chooseFriends\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/SynligOsynlig.html\">Synlig / osynlig</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/mest_sedda.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"chooseFriends\">&nbsp;&nbsp;<a href=\"".$baseUrl."/SynligOsynlig.html\">Synlig / osynlig</a></td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/flort.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"flirt\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/FlortaIHemlighet.html\">Flörta i hemlighet</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/flort.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"flirt\">&nbsp;&nbsp;<a href=\"".$baseUrl."/FlortaIHemlighet.html\">Flörta i hemlighet</a></td>
  </tr>";
  		$body.= " <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/annonser_erbjudanden.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"flirt\">&nbsp;&nbsp;<a href=\"http://dev.flator.se/Diskutera pa forumet.html\">Diskutera på forumet</a></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\" class=\"colorText\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/annonser_erbjudanden.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"flirt\">&nbsp;&nbsp;<a href=\"".$baseUrl."/Diskutera pa forumet.html\">Diskutera på forumet</a></td>
  </tr>";
 		$body.= "</table>";
 

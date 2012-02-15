@@ -1,6 +1,6 @@
 <?php
 $metaTitle = "Flator.se - Sök";
-$numPerPage = 10;
+$numPerPage = 50;
 
 if ( (int)$_SESSION["rights"] < 2 )
 {
@@ -82,7 +82,7 @@ $limitQuery = " LIMIT ".((int)$_GET["offset"] > 0 ? (int)$_GET["offset"].', '.$n
 	
 	} elseif ( $_GET["order"] == "loginTime" ) {
 	
-		$q = "SELECT fl_users.* FROM fl_users WHERE ".$specific_query." AND rights > 1 ORDER BY username ASC".$limitQuery;
+		$q = "SELECT fl_users.* FROM fl_users WHERE ".$specific_query." AND rights > 1 ORDER BY lastVisibleOnline DESC ".$limitQuery;
 		//var_dump($specific_query);
 		$countQuery = "SELECT count(id) FROM fl_users WHERE ".$specific_query." AND fl_users.rights > 1";
 		//var_dump($countQuery);
@@ -160,7 +160,7 @@ $printed = 0;
 			$statusRow = $DB->CacheGetRow( 3*60, $q, FALSE, TRUE );
 			$searchResult[ $key ]["status"] = $statusRow["statusMessage"];
 
-			$q = "SELECT *, UNIX_TIMESTAMP(insDate) AS unixTime FROM fl_users_online WHERE userId = " . (int)$searchResult[ $key ]["id"] . " ORDER BY insDate DESC LIMIT 0,1";
+			$q = "SELECT *, UNIX_TIMESTAMP(lastVisibleOnline) AS unixTime FROM fl_users WHERE userId = " . (int)$searchResult[ $key ]["id"] . " ORDER BY lastVisibleOnline DESC LIMIT 0,1";
 			$onlineRow = $DB->CacheGetRow( 1*60, $q, FALSE, TRUE );
 			if ( ( time() - $onlineRow["unixTime"] ) < 900 && $onlineRow["unixTime"] > 0 )
 			{

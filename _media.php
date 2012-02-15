@@ -122,7 +122,7 @@ if ( $_POST["type2"] == "uploadPhoto" )
 					$body.= "<span onMouseOver=\"document.deleteMultipleAlbum.src='" . $baseUrl . "/img/symbols/gif_red/radera.gif'\" onMouseOut=\"document.deleteMultipleAlbum.src='" . $baseUrl . "/img/symbols/gif_purple/radera.gif'\"><a href=\"#noexist\" OnClick=\"if(confirm('Ta bort markerade album?')) { location='" . $baseUrl . "/delete_albums.html?albumIds=' + checkboxValues(document.form.albumId); } else { return false; }\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/radera.gif\" name=\"deleteMultipleAlbum\" align=\"ABSMIDDLE\" border=\"0\" />Radera</a></span>";
 			}
 			
-					$body.= "<span onMouseOver=\"document.skapa_ny_grupp.src='" . $baseUrl . "/img/symbols/gif_red/skapa_ny_grupp.gif'\" onMouseOut=\"document.skapa_ny_grupp.src='" . $baseUrl . "/img/symbols/gif_purple/skapa_ny_grupp.gif'\" style=\"margin-left:15px;\"><a href=\"#noexist\" onClick=\"showPopup('popupAddAlbum');\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/skapa_ny_grupp.gif\" name=\"skapa_ny_grupp\" align=\"ABSMIDDLE\" border=\"0\" />Lägg till nytt album</a></span>";
+					$body.= "<span onMouseOver=\"document.skapa_ny_grupp.src=" . $baseUrl . "/img/symbols/gif_red/skapa_ny_grupp.gif'\" onMouseOut=\"document.skapa_ny_grupp.src='" . $baseUrl . "/img/symbols/gif_purple/skapa_ny_grupp.gif'\" style=\"margin-left:15px;\"><a href=\"#noexist\" onClick=\"showPopup('popupAddAlbum');\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/skapa_ny_grupp.gif\" name=\"skapa_ny_grupp\" align=\"ABSMIDDLE\" border=\"0\" />Lägg till nytt album</a></span>";
 			
 	if ( count( $albums ) > 0 )
 	{

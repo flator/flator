@@ -1,6 +1,14 @@
 <?php
+ /*** check if flator.se ***/
+    $protocol = $_SERVER['HTTPS'] == 'on' ? 'https' : 'http';
+    /*** return the full address ***/
+   $cur_page_URL = $protocol.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+if ($cur_page_URL == "http://flator.se/"){
+	header('Location: http://www.flator.se/');
+   }
+
 session_start(); 
- 
+
 include( "config.php" ); 
 
 /* Process file being requested */
@@ -2300,6 +2308,16 @@ break;
 		$divPopup = TRUE;
 		include( "_Diskutera pa forumet.php" );
 		break;
+	case "senasteHandelserna.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		$memberMenu = TRUE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "_senasteHandelserna.php" );
+		break;
+		
       ////////////////////////////finish line for pouyan codes
 	default:
 		$loadAjax = TRUE;
