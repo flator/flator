@@ -35,7 +35,6 @@ else
 		{
 			//if ( $friendArray[ $key ]["userId"] != (int)$_SESSION["userId"] )
 			//{
-			
 				$friends[ $friendArray[ $key ]["userId"] ] = $friendArray[ $key ]["userId"];
 				if ( strlen( $friendList ) > 0 ) $friendList .= ",";
 				$friendList.= $friendArray[ $key ]["userId"];
@@ -48,23 +47,42 @@ else
 			//}
 		}
 	
-$q = "SELECT fl_status.*, UNIX_TIMESTAMP(fl_status.insDate) AS unixTime, fl_users.username FROM fl_status left join fl_users on fl_status.userId = fl_users.id WHERE fl_status.userId IN (" . $friendList . ") and fl_status.statusType != 'newPhoto' ORDER BY fl_status.insDate DESC LIMIT 10";
+$q = "SELECT fl_status.*, UNIX_TIMESTAMP(fl_status.insDate) AS unixTime, fl_users.username FROM fl_status left join fl_users on fl_status.userId = fl_users.id WHERE fl_status.userId IN (" . $friendList . ") and fl_status.statusType != 'newPhoto' ORDER BY fl_status.insDate DESC LIMIT 100";
 $userStatus = $DB->CacheGetAssoc( 3*60, $q, FALSE, TRUE );
 
 }
 if ( count( $userStatus ) > 0 )
 {
-$body.= "<div style=\"float: left; \"><div style=\"padding-top: 14px; padding-bottom: 3px;border:none; border-bottom: 1px dotted #c8c8c8; width:592px; margin-bottom:10px;\" width=\"595px\"><h3>Senaste Händelserna</h3></div></div>";
+$body.= "<div style=\"float: left; \"><div style=\"padding-top: 14px; padding-bottom: 3px;border:none; border-bottom: 1px dotted #c8c8c8; width:592px; margin-bottom:10px;\" width=\"595px\"><h3>Mina vänners händelser</h3></div></div>";
 
 	$commentedPhotos = array();
 	while ( list( $key, $value ) = each( $userStatus ) )
 	{
-		
+		unset( $eventDate );
+		if ( date("Y-m-d", $userStatus[ $key ]["unixTime"] ) == date( "Y-m-d" ) )
+		{
+			// Event updated today
+			$eventDate = "idag " . date( "H:i", $userStatus[ $key ]["unixTime"] );
+		}
+		elseif ( date("Y-m-d", $userStatus[ $key ]["unixTime"] ) == date( "Y-m-d", ( time() - 86400 ) ) )
+		{
+			// Event updated yesterday
+			$eventDate = "ig&aring;r " . date( "H:i", $userStatus[ $key ]["unixTime"] );
+		}
+		elseif ( date("Y", $userStatus[ $key ]["unixTime"] ) == date( "Y" ) )
+		{
+			// Event updated this year
+			$eventDate = date( "d", $userStatus[ $key ]["unixTime"] ) . " " . strtolower( months( (int)date( "m", $userStatus[ $key ]["unixTime"] ) ) ) . ", " . date( "H:i", $userStatus[ $key ]["unixTime"] );
+		}
+		else
+		{
+			$eventDate = date( "d", $userStatus[ $key ]["unixTime"] ) . " " . strtolower( months( (int)date( "m", $userStatus[ $key ]["unixTime"] ) ) ) . " " . date( "Y, H:i", $userStatus[ $key ]["unixTime"] );
+		}
 		if ($userStatus[ $key ]["statusType"] == "personalMessage") {
 
 			$userStatus[ $key ]["statusMessage"] = "<span class=\"email_date\">Status:</span> ".substr(stripslashes($userStatus[ $key ]["statusMessage"]), 0, 238);
 
-		$q = "SELECT fl_comments.*, UNIX_TIMESTAMP(fl_comments.insDate) AS unixTime, fl_users.username FROM fl_comments LEFT JOIN fl_users ON fl_users.id = fl_comments.userId WHERE fl_comments.contentId = " . (int)$userStatus[ $key ]["id"] . " and fl_comments.type = 'statusComment'  ORDER BY insDate DESC";
+		$q = "SELECT fl_comments.*, UNIX_TIMESTAMP(fl_comments.insDate) AS unixTime, fl_users.username FROM fl_comments LEFT JOIN fl_users ON fl_users.id = fl_comments.userId WHERE fl_comments.contentId = " . (int)$userStatus[ $key ]["id"] . " and fl_comments.type = 'statusComment' ORDER BY insDate DESC";
 		$userStatusComments [ $key ] = $DB->CacheGetAssoc( 1*60, $q, FALSE, TRUE );
 		}
 
