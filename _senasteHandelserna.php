@@ -1,4 +1,15 @@
 <?php
+/*# ----------------------------------------------------------------------------
+ 
+ Version:      1.1.3
+ Author:       pouyan maleki
+
+ Script Function:
+	           show the latest user publik actions .
+ Licenced  to: Bebetteronline.com
+ Date:  	   2012-02-16
+# ----------------------------------------------------------------------------*/
+
 $metaTitle = "Flator.se - Hem";
 
 if ( (int)$_SESSION["rights"] < 2 )
@@ -360,7 +371,7 @@ $body.= "<div style=\"float: left; \"><div style=\"padding-top: 14px; padding-bo
 					if ( count( $guestImage ) > 0 )
 					{
 						
-						$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace($baseUrl.'/rwdx/user/', '', $guestImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\" style=\"margin-bottom:8px; margin-left:4px;margin-top:8px; margin-right:5px;\"  />";
+						$avatar = "<img src=\"" . $baseUrl . "/user-photos/" . str_replace($usedImagesUrlPaths, '', $guestImage["imageUrl"]) . "/profile-thumb/" . "\" border=\"0\" style=\"margin-bottom:8px; margin-left:4px;margin-top:8px; margin-right:5px;\"  />";
 
 					}
 					else

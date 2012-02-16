@@ -1,4 +1,14 @@
 <?php
+/*# ----------------------------------------------------------------------------
+ 
+ Version:      1.1.1
+ Author:       pouyan maleki
+
+ Script Function:
+	           show the information page about blogging, for users who are not registred!
+ Licenced  to: Bebetteronline.com
+ Date:  	   2012-02-10
+# ----------------------------------------------------------------------------*/
 $metaTitle = "M&ouml;tesplats och dating f&ouml;r lesbiska - Flator.se.";
 $metaDescription="Hos Flator.se har du din egna blogg som du kan skriva om vad du vill i. Bäst av allt, det är bara andra lesbiska som kommer läsa. Bli medlem idag!";
 
