@@ -1,4 +1,5 @@
 <?php
+//include( "recalculate.php" );
 if ( (int)$_SESSION["rights"] < 2 )
 {
 	$publicMenu = TRUE;
@@ -187,6 +188,12 @@ else
 #	{
 #		$avatar = "<img src=\"" . $baseUrl . "/img/symbols/gif_avatars/person_avantar_stor.gif\" border=\"0\" width=\"167\" height=\"191\" />";
 #	}
+////////////////////////////pouyan last one
+$q= "SELECT *, UNIX_TIMESTAMP(insDate) AS unixTime FROM fl_forum_threads WHERE (insDate > DATE_SUB(NOW(), INTERVAL 30 DAY)) ORDER BY insDate DESC ";
+	$userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
+	while( list( $key, $value ) = each( $userStatus )){
+	$userStatus[ $key ]["statusMessage"] = str_replace("forumEntry:", "<span class=\"email_date\">Kommenterade forumEntry:</span>", $userStatus[ $key ]["statusMessage"]);
+	}
 	$q = "SELECT * FROM fl_images WHERE userId = " . (int)$userPres["id"] . " AND imageType = 'profileMedium'";
 	$profileImage = $DB->GetRow( $q, FALSE, TRUE );
 	if ( count( $profileImage ) > 0 )
@@ -208,6 +215,7 @@ else
 	{
 		while ( list( $key, $value ) = each( $userStatus ) )
 		{
+
 			if ( strlen( $recentStatus ) < 1 )
 			{
 				
@@ -467,18 +475,23 @@ window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 
 	$commentedPhotos = array();
 	if ($_GET["s"] == "full") {
+	//pouyan changed from 30 to 200
 	$q = "SELECT *, UNIX_TIMESTAMP(insDate) AS unixTime FROM fl_status WHERE userId = " . (int)$userPres["id"] . " and statusType != 'newPhoto' AND (insDate > DATE_SUB(NOW(), INTERVAL 30 DAY)) ORDER BY insDate DESC ";
 	$statusMax = 9999;
 	} else {
+	//pouyan
 	$q = "SELECT *, UNIX_TIMESTAMP(insDate) AS unixTime FROM fl_status WHERE userId = " . (int)$userPres["id"] . " and statusType != 'newPhoto' ORDER BY insDate DESC LIMIT 0,50";
+	//$q = "SELECT * FROM fl_users WHERE insDate>2008-11-25 20:14:36";
 	$statusMax = 10;
 	}
 	$userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
+
 	if ( count( $userStatus ) > 0 )
 	{
 		$iStatus = 0;
 		$body .= "<table border=\"0\" width=\"100%\" cellspacing=\"0px\" cellpadding=\"0px\">";
 		while ( list( $key, $value ) = each( $userStatus ) )
+		 
 		{
 			if ($iStatus == $statusMax) {
 			break;
@@ -509,6 +522,7 @@ window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 
 			$q = "SELECT fl_comments.*, UNIX_TIMESTAMP(fl_comments.insDate) AS unixTime, fl_users.username FROM fl_comments LEFT JOIN fl_users ON fl_users.id = fl_comments.userId WHERE fl_comments.contentId = " . (int)$userStatus[ $key ]["id"] . " and fl_comments.type = 'statusComment' ORDER BY insDate DESC";
 			$userStatusComments [ $key ] = $DB->CacheGetAssoc( 30, $q, FALSE, TRUE );
+			
 			}
 			if ($userStatus[ $key ]["statusType"] == "blogEntry") {
 
@@ -519,17 +533,17 @@ window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 
 			}
 			}
+			//////////////////pouyan start here
 			if ($userStatus[ $key ]["statusType"] == "blogComment") {
 			$userStatus[ $key ]["statusMessage"] = str_replace("Kommenterade blogginlägg:", "<span class=\"email_date\">Kommenterade blogginlägg:</span>", $userStatus[ $key ]["statusMessage"]);
 			}
+			
 			if ($userStatus[ $key ]["statusType"] == "newFriend") {
 			$userStatus[ $key ]["statusMessage"] = str_replace("Blev vän med:", "<span class=\"email_date\">Blev vän med:</span>", $userStatus[ $key ]["statusMessage"]);
 			}
 			if ($userStatus[ $key ]["statusType"] == "addedEvent") {
 			$userStatus[ $key ]["statusMessage"] = str_replace("Lade till event", "<span class=\"email_date\">Lade till event:</span>", $userStatus[ $key ]["statusMessage"]);
 			}
-
-
 
 			if ($userStatus[ $key ]["statusType"] == "photoComment") {
 				$regex = '/media\/photos\/(.+?)\.html/';
@@ -608,7 +622,7 @@ window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 			$userStatus[ $key ]["statusMessage"] = '<a href=\"'.$baseUrl.'/media/photos/'.$commentedPhoto["id"].'.html\"><i>'.$commentedPhoto["name"].'</i></a><span class="email_date"> av </span><a href=\"'.$baseUrl.'/user/'.stripslashes($commentedPhoto["username"]).'.html\">'.$commentedPhoto["username"].'</a> <span class="email_date">uppladdad '.$onlineTime.'</span><br><span class="email_date">Bild ur albumet</span> "<a href="' . $baseUrl . '/media/album/'.$commentedPhoto["albumId"].'.html">'.$commentedPhoto["albumName"].'</a>"';
 	
 			$userStatus[ $key ]["statusMessage"] .= "<div style=\"position:relative;\"><div id=\"popupMediumCommentedImage".$key."\" style=\"display: none; position:absolute;border: 2px solid #645d54; top: 0px; left: 0px; z-index: 101; background-color: #ffffff; \"><div style=\"margin: 0px;\"><div style=\"float: left; display: block;\"><a href=\"javascript:void(null)\" onclick=\"closeImage2('popupMediumCommentedImage".$key."');\"><img src=\"".$baseUrl."/img/symbols/gif_avatars/person_avantar_stor.gif\" id=\"mediumCommentedImage".$key."\" border=\"0\" style=\"margin: 3px;\" /></a></div></div></div></div>";
-
+            
 
 			$q = "SELECT fl_comments.*, UNIX_TIMESTAMP(fl_comments.insDate) AS unixTime, fl_users.username FROM fl_comments LEFT JOIN fl_users ON fl_users.id = fl_comments.userId WHERE fl_comments.contentId = " . (int)$userStatus[ $key ]["photoId"] . " and fl_comments.type = 'photoComment' ORDER BY insDate DESC";
 			$userStatusComments [ $key ] = $DB->CacheGetAssoc( 30, $q, FALSE, TRUE );
@@ -616,7 +630,6 @@ window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 			continue;
 			}
 			}
-
 			
 			if ($userStatus[ $key ]["statusType"] == "tagStatus") {
 
@@ -675,11 +688,7 @@ window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 
 			}
 
-
-
-
-if ($userStatus[ $key ]["statusType"] == "forumEntry") {
-
+            if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 			$q = "SELECT fl_forum_threads.*, fl_forum_cat.shortname FROM fl_forum_threads LEFT JOIN fl_forum_cat ON fl_forum_threads.catId = fl_forum_cat.id WHERE fl_forum_threads.id = '" . (int)$userStatus[ $key ]["statusMessage"] . "'";
 			$forumThreadEntry = $DB->GetRow( $q, FALSE, TRUE );
 			if (count($forumThreadEntry) < 1) continue;
@@ -692,21 +701,12 @@ if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 				if (count($forumThreadEntry_base) < 1) continue;
 				$forumThreadEntry["headline"] = $forumThreadEntry_base["headline"];
 				$userStatus[ $key ]["statusMessage"] = '<span class="email_date">Skrev ett inlägg i forumtråden:</span> <a href="'.$baseUrl.'/forum/'.$forumThreadEntry["shortname"].'/'.$forumThreadEntry["slug"].'.html\">'.$forumThreadEntry["headline"].'</a>.';
-
 			}
+		    }
 
 
 
-	
-
-
-			}
-
-
-
-
-
-			if ($userStatus[ $key ]["statusType"] == "newPhotosUploaded") {
+if ($userStatus[ $key ]["statusType"] == "newPhotosUploaded") {
 			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/bild.gif" style="vertical-align:top;margin-top:3px;" border="0">';
 			} elseif ($userStatus[ $key ]["statusType"] == "personalMessage") {
 			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/logga_in.gif" style="vertical-align:top;margin-top:3px;" border="0">';
@@ -729,8 +729,6 @@ if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 			$symbol = "";
 			}
 
-			 
-	
 
 			if ($userStatus[ $key ]["statusType"] == "newPhotosUploaded" && $userStatus[ $key ]["photoIds"] != "") {
 			
@@ -766,9 +764,9 @@ if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 
 									//$body .= '<a href="' . $baseUrl . '/media/photos/'.$albumPhotos[ $key2 ]["id"].'.html">';
 									if (($i % 4) == 0) {
-									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href=" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."<br>";
+									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href='" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."<br>";
 									} else {
-									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href=" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."";
+									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href='" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."";
 									}
 									$body .= '</a>';
 								}
@@ -809,6 +807,8 @@ if ($userStatus[ $key ]["statusType"] == "forumEntry") {
 					{
 						$avatar = "<img src=\"" . $baseUrl . "/img/symbols/gif_avatars/person_avnatar_liten.gif\" border=\"0\" width=\"26\" height=\"29\" style=\"margin-bottom:8px; margin-left:4px;margin-top:8px; margin-right:5px;\" />";
 					}
+					/////////////////////////////pouyan codes begin here
+					//$q = SELECT * FROM `fl_status` WHERE id=
 
 					$q = "SELECT * FROM fl_images WHERE userId = " . (int)$userStatusComments[$key][ $key3 ]["userId"] . " AND imageType = 'profileMedium'";
 					$guestImage = $DB->GetRow( $q, FALSE, TRUE );

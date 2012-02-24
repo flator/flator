@@ -120,9 +120,10 @@ $body .= '<br /><br /><a href="'.$baseUrl.'/blogs/'.stripslashes( $userPres["use
 				$eventDate = date( "d", $blogPosts[ $key ]["unixTime"] ) . " " . strtolower( months( (int)date( "m", $blogPosts[ $key ]["unixTime"] ) ) ) . " " . date( "Y, H:i", $blogPosts[ $key ]["unixTime"] );
 			}
 
-			$q = "SELECT fl_comments.*, UNIX_TIMESTAMP(fl_comments.insDate) AS unixTime, fl_users.username FROM fl_comments LEFT JOIN fl_users ON fl_users.id = fl_comments.userId WHERE fl_comments.type = 'blogComment' AND fl_comments.contentId = " . (int)$blogPosts[ $key ]["id"] . " AND fl_users.rights > 2 ORDER BY fl_comments.insDate DESC";
+			$q = "SELECT fl_comments.*, UNIX_TIMESTAMP(fl_comments.insDate) AS unixTime, fl_users.username FROM fl_comments LEFT JOIN fl_users ON fl_users.id = fl_comments.userId WHERE fl_comments.type = 'blogComment' AND fl_comments.contentId = " . (int)$blogPosts[ $key ]["id"] . " AND fl_users.rights > 1 ORDER BY fl_comments.insDate DESC";
+			
 			$comments = $DB->GetAssoc( $q, FALSE, TRUE );
-
+             //var_dump($comments );
 			$body.= "<div class=\"blogPost\"><table border=\"0\" width=\"100%\" style=\"margin-top:20px;\"><tr>
  	<td style=\"margin:none;padding:none;\" valign=\"top\"><a href=\"".$baseUrl."/blogs/posts/".$blogPosts[ $key ]["id"].".html\" class=\"news_type\">" . stripslashes( $blogPosts[ $key ]["subject"] ) . "</a>&nbsp;&nbsp;<span class=\"email_date\" style=\"\">" . $eventDate . "</span>";
 	

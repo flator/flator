@@ -1,14 +1,4 @@
 <?php
-/*# ----------------------------------------------------------------------------
- 
- Version:      1.1.1
- Author:       pouyan maleki
-
- Script Function:
-	           show the information page about party events, for users who are not registred!
- Licenced  to: Bebetteronline.com
- Date:  	   2012-02-10
-# ----------------------------------------------------------------------------*/
 $metaTitle = "M&ouml;tesplats och dating f&ouml;r lesbiska - Flator.se.";
 $metaDescription="Flator.se försöker så långt det går samla alla bilder från roliga event över hela Sverige. Bli medlem och se om du finns med på någon bild!";
 

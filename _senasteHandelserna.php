@@ -35,6 +35,7 @@ else
 	//$q = "SELECT * FROM fl_friends WHERE insDate > '2008-10-03 17:40:25'";
 	//$q="SELECT * FROM fl_albums WHERE friends_only='yes'";
 	
+	//$q = xmlhttp.open("G","demo_post.asp",true);
 	$q = "SELECT * FROM fl_comments WHERE type='photoComment' ";
 	//AND(friends_only='NO')
 	$friendArray = $DB->CacheGetAssoc( 3*60, $q, FALSE, TRUE );
@@ -64,7 +65,7 @@ $userStatus = $DB->CacheGetAssoc( 3*60, $q, FALSE, TRUE );
 }
 if ( count( $userStatus ) > 0 )
 {
-$body.= "<div style=\"float: left; \"><div style=\"padding-top: 14px; padding-bottom: 3px;border:none; border-bottom: 1px dotted #c8c8c8; width:592px; margin-bottom:10px;\" width=\"595px\"><h3>Mina vänners händelser</h3></div></div>";
+$body.= "<div style=\"float: left; \"><div style=\"padding-top: 14px; padding-bottom: 3px;border:none; border-bottom: 1px dotted #c8c8c8; width:592px; margin-bottom:10px;\" width=\"595px\"><h3>Senaste händelser</h3></div></div>";
 
 	$commentedPhotos = array();
 	while ( list( $key, $value ) = each( $userStatus ) )
@@ -326,9 +327,9 @@ $body.= "<div style=\"float: left; \"><div style=\"padding-top: 14px; padding-bo
 
 									//$body .= '<a href="' . $baseUrl . '/media/photos/'.$albumPhotos[ $key2 ]["id"].'.html">';
 									if (($i % 4) == 0) {
-									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href=" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."<br>";
+									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href='" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."<br>";
 									} else {
-									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href=" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."";
+									$body .= "<div class=\"blog_thumbs_Image\" OnClick=\"location.href='" . $baseUrl . "/media/photos/".$albumPhotos[ $key2 ]["id"].".html';\" style=\"background: transparent url(" . $baseUrl . "/user-photos/" . urlencode(str_replace($usedImagesServerPaths, "", $albumPhotos[ $key2 ]["serverLocation"])) . "/small-blog/) no-repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;margin-right:5px; margin-bottom:".$marginBetween.";\"".$hoverAction.">".$thumbcss."</div>".$removeThumb."";
 									}
 									$body .= '</a>';
 								}

@@ -1,14 +1,4 @@
 <?php
-/*# ----------------------------------------------------------------------------
- 
- Version:      1.1.1
- Author:       pouyan maleki
-
- Script Function:
-	           show the information page about finding friends, for users who are not registred!
- Licenced  to: Bebetteronline.com
- Date:  	   2012-02-10
-# ----------------------------------------------------------------------------*/
 $metaTitle = "M&ouml;tesplats och dating f&ouml;r lesbiska - Flator.se.";
 $metaDescription="Flator.se är odiskutabelt Sveriges största samlingsplats för lesbiska och bisexuella kvinnor. Läs mer om vår webbplats och bli medlem redan idag!";
 

@@ -1,7 +1,7 @@
 <?php
 include('adodb5/adodb.inc.php');
 include( "static.php" );
-include('functions.php');
+//include("functions.php");
 
 $DB = NewADOConnection('mysql');
 if ( DEBUG_MODE == TRUE )
@@ -9,20 +9,16 @@ if ( DEBUG_MODE == TRUE )
 	#$DB->debug = TRUE;
 }
 $DB->Connect(LOCALHOST, ROOT, PASS, TABELS);  //static database
-$q = "SELECT * FROM fl_users ORDER BY username ASC";
-#	echo "CurrYear: ".date("Y");
-#	echo " CurrMonth: ".date("m");
-#	echo " CurrDay: ".date("d");
+//$q = "SELECT * FROM fl_users ORDER BY username ASC";
+$q = "SELECT * FROM fl_users ORDER BY username >0";
 $searchResult = $DB->GetAssoc( $q, FALSE, TRUE );
-while ( list( $key, $value ) = each( $searchResult ) )  //
+
+while ( list( $key, $value ) = each( $searchResult ) )  //$key is id
 		{
 			$age = 0;
-			echo $key[1];          //
-   			//var_dump( $value);  //user info.
-			if ( strlen( $searchResult[ $key ]["personalCodeNumber"]) > 0 )
-			{
-			//echo $searchResult[ 12079 ]["personalCodeNumber"];1
-				$searchResult[ $key ]["personalCodeNumber"] = str_replace( "-", "", $searchResult[ $key ]["personalCodeNumber"] );
+			//echo $key[1];          //
+
+					$searchResult[ $key ]["personalCodeNumber"] = str_replace( "-", "", $searchResult[ $key ]["personalCodeNumber"] );
 				//var_dump($searchResult[ 1 ]);
 				$searchResult[ $key ]["personalCodeNumber"] = str_replace( "+", "", $searchResult[ $key ]["personalCodeNumber"] );
 				if ( strlen( $searchResult[ $key ]["personalCodeNumber"] ) == 10 )   //if user regester social nr. like 1982.....
@@ -53,24 +49,15 @@ while ( list( $key, $value ) = each( $searchResult ) )  //
 					$birthYear = substr( $searchResult[ $key ]["personalCodeNumber"], 0, 4 );
 					//echo $birthYear;
 				}
-				$age = GetAge($birthYear, $birthMonth, $birthDay);
-				//var_dump($age); //show age
-			}
-				#echo "UserId: ".(int)$searchResult[ $key ]["id"]." Birthday: $birthDay Month: $birthMonth Year: $birthYear Age: $age"."<br>\n";
-				$record = array();	
-				if ($searchResult[ $key ]["approved"] == "YES" && strlen($searchResult[ $key ]["personalCodeNumber"]) > 0) {
-				$record["personalCodeNumber"] = $birthYear.(strlen($birthMonth) > 1 ? $birthMonth : "0".$birthMonth).(strlen($birthDay) > 1 ? $birthDay : "0".$birthDay);
-				}
-				$record["currAge"] = $age;
-				var_dump((int)$searchResult[ $key ]["id"]);
-				$DB->AutoExecute( "fl_users", $record, 'UPDATE', 'id = '.(int)$searchResult[ $key ]["id"] ); 
+				   $YearDiff = date("Y")-$birthYear;
+				   echo $YearDiff ;
+                   $MonthDiff = date("m");
+                   $DayDiff = date("d");
+				   
+		        if($MonthDiff==$BirthMonth && $DayDiff==$BirthDay ){
+		        mysql_query("UPDATE fl_users SET currAge ='".$YearDiff."' WHERE id ='".$key."'");}
                  
 		}
-
-
-
-
-
 
 
 

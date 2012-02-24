@@ -1,14 +1,4 @@
 <?php
-/*# ----------------------------------------------------------------------------
- 
- Version:      1.1.1
- Author:       pouyan maleki
-
- Script Function:
-	           show the information page about forums, for users who are not registred!
- Licenced  to: Bebetteronline.com
- Date:  	   2012-02-10
-# ----------------------------------------------------------------------------*/
 $metaTitle = "M&ouml;tesplats och dating f&ouml;r lesbiska - Flator.se.";
 $metaDescription="En av de stora behållningarna med att vara medlem på Flator.se är våra sprudlande forum. Bli medlem idag och börja diskutera.";
 

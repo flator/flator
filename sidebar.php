@@ -1648,9 +1648,9 @@ $body .= "<table border=\"0\" width=\"100%\" style=\"font-size: 12px; margin-bot
 <!--	<td align=\"right\" valign=\"bottom\" style=\"border-bottom: 1px dotted #c8c8c8;\"><span class=\"other_link\"><a href=\"#\">edit</a></span><span style=\"color: #b28aa6;\">&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href=\"#\"><img src=\"" . $baseUrl . "/img/kryss_edit.gif\" name=\"quickLinksX\" border=\"0\" onMouseOver=\"document.quickLinksX.src='" . $baseUrl . "/img/kryss_edit_red.gif'\" onMouseOut=\"document.quickLinksX.src='" . $baseUrl . "/img/kryss_edit.gif'\"></a></td>-->
  </tr>";
 
-  $body .= "
+   $body .= "
   <tr>
-	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\"><span onMouseOver=\"document.senasteHandelserna.src='" . $baseUrl . "/img/symbols/gif_red/nyast.gif'\" onMouseOut=\"document.senasteHandelserna.src='" . $baseUrl . "/img/symbols/gif_purple/nyast.gif'\"><a href=\"" . $baseUrl . "/senasteHandelserna.html\" style=\"font-weight: normal\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/nyast.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"senasteHandelserna\">&nbsp;&nbsp;Senaste Händelserna</a></span></td>
+	<td align=\"left\" valign=\"middle\" style=\"line-height: 20px\"><span onMouseOver=\"document.sidoKnappOnline.src='" . $baseUrl . "/img/symbols/gif_red/valj_region.gif'\" onMouseOut=\"document.sidoKnappOnline.src='" . $baseUrl . "/img/symbols/gif_purple/valj_din_region.gif'\"><a href=\"" . $baseUrl . "/senasteHandelserna.html?SearchQuery=&order=online\" style=\"font-weight: normal\"><img src=\"" . $baseUrl . "/img/symbols/gif_purple/valj_din_region.gif\" border=\"0\" style=\"vertical-align:middle;\" name=\"sidoKnappOnline\">&nbsp;&nbsp;Senaste händelser</a></span></td>
  </tr>";
  
  $body .= "

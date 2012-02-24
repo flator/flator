@@ -68,10 +68,15 @@ if ( (int)$_SESSION["rights"] > 1 )
 
 	if ( $userProfile["visible"] == "YES" )
 	{
-        //$qd="DELETE FROM fl_users_online WHERE userId='".(int)$_SESSION["userId"]."'";
-		//mysql_query($qd);
-
+		$q = "SELECT * FROM fl_users_online WHERE id = " . (int)$_SESSION["userId"];
+     	$userCheck = $DB->GetRow( $q, FALSE, TRUE );
+		if($userCheck > 0 ){
+		  
 		 
+		  
+		}
+	
+	
 		$record = array();
 		$record["insDate"] = date('Y-m-d H:i:s');
 		$record["userId"] = (int)$_SESSION["userId"];

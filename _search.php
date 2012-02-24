@@ -160,7 +160,7 @@ $printed = 0;
 			$statusRow = $DB->CacheGetRow( 3*60, $q, FALSE, TRUE );
 			$searchResult[ $key ]["status"] = $statusRow["statusMessage"];
 
-			$q = "SELECT *, UNIX_TIMESTAMP(lastVisibleOnline) AS unixTime FROM fl_users WHERE userId = " . (int)$searchResult[ $key ]["id"] . " ORDER BY lastVisibleOnline DESC LIMIT 0,1";
+			$q = "SELECT *, UNIX_TIMESTAMP(insDate) AS unixTime FROM fl_users_online WHERE userId = " . (int)$searchResult[ $key ]["id"] . " ORDER BY insDate DESC LIMIT 0,1";
 			$onlineRow = $DB->CacheGetRow( 1*60, $q, FALSE, TRUE );
 			if ( ( time() - $onlineRow["unixTime"] ) < 900 && $onlineRow["unixTime"] > 0 )
 			{
