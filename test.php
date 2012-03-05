@@ -33,22 +33,21 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 			$userStatus[ $key ]["statusMessage"] =str_replace("Kommenterade blogginlägg:", "<span>Kommenterade blogginlägg: ".$man["user"]." skrev i</span>", $userStatus[ $key ]["statusMessage"]);
 			$tmpMessage="<br>Hej !</br><br>".$userStatus[ $key ]["statusMessage"]."</br>";
 			
-			
-			   //find blogg contentId
-		   
+			 //find blogg contentId
             $qs=mysql_query("SELECT contentId FROM fl_comments WHERE `insDate`='".$userStatus[ $key ]["insDate"]."'");
 			while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
 				$qs=mysql_query("SELECT userId FROM fl_comments WHERE contentId=".$row[0]);
 				while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
 					   $qsl=mysql_query("SELECT email FROM fl_users WHERE id=".$row[0]);
      				   while ($rows = mysql_fetch_array($qsl, MYSQL_NUM)) {
-						 sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny blogg comment",$tmpMessage);
-						 //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny blogg comment", $tmpMessage );
+						 sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny blogg comment",$rows[0]);
+						 //sendMail($rows[0], "agneta@flator.se", "Flator.se Crew","Ny blogg comment", $tmpMessage );
 	        		    }
 			    }			
 			}	
-			//mysql_query("UPDATE `fl_status` SET`user name notifed`='".$blogger["username"]."' WHERE `insDate`='".$userStatus["Date"]."' AND `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
-         	//mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO'"); //update send email row after sending mail
+			//".$blogger["username"]."
+			mysql_query("UPDATE `fl_status` SET`user name notifed`='ALL USER IN THIS BLOGG' WHERE `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
+         	mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO'"); //update send email row after sending mail
 		
 		}
 			
@@ -57,21 +56,22 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 		$userStatus[ $key ]["statusMessage"] =str_replace("foruminlägg:", "<span>Foruminlägg: ".$LastWriterName["name"]." skrev i</span>", $userStatus[ $key ]["statusMessage"]);
 		$tmpMessage="<br>Hej !</br><br>".$userStatus[ $key ]["statusMessage"]."</br>";  
 		
+		 //mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL THIS TREAD USER' WHERE `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
+		//mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO' AND `user name notifed` !='NULL'"); //update send email row after sending mails	
+		
 		   //find forum contentId
-		  
             $qs=mysql_query("SELECT threadId FROM fl_forum_threads WHERE insDate='".$userStatus[ $key ]["insDate"]."'");
 			while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
 				$qs=mysql_query("SELECT userId FROM fl_forum_threads WHERE threadId=".$row[0]);
 				while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
 				   $qsl=mysql_query("SELECT email FROM fl_users WHERE id=".$row[0]);
 				   while ($rows = mysql_fetch_array($qsl, MYSQL_NUM)) {
-						 sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny foruminlägg",$tmpMessage);
-						 //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny forumlägg", $tmpMessage );
+						 sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny foruminlägg",$rows[0]);
+						 //sendMail($rows[0], "agneta@flator.se", "Flator.se Crew","Ny forumlägg", $tmpMessage );
 					}
 				  }			
             }  
-	     //mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL THIS TREAD USER' WHERE `statusMessage`='".$userStatus[ $key ]["statusMessage"]."' AND `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
-		//mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO' AND `user name notifed` !='NULL'"); //update send email row after sending mails	
+	    
         }
 
 	    if ($userStatus[ $key ]["statusType"] == "newFriend") {
@@ -85,14 +85,14 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 				$q=mysql_query("SELECT friendUserId FROM fl_friends WHERE userId=".$row[0]); 
 				while ($row = mysql_fetch_array($q, MYSQL_NUM)) {
 					$qs=mysql_query("SELECT `email` FROM `fl_users` WHERE `id`=".$row[0]);
-					while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
+					while ($rows = mysql_fetch_array($qs, MYSQL_NUM)) {
 					   sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Nya vänner ", $tmpMessage );
-					   //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Nya vänner ", $tmpMessage );
+					   //sendMail($rows[0], "agneta@flator.se", "Flator.se Crew","Nya vänner ", $tmpMessage );
 					  }			
 					}
 	        }	
-			//mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL FRIENDS' WHERE `statusMessage`='".$userStatus[ $key ]["statusMessage"]."' AND `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
-			//mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO' AND `user name notifed` !='NULL' AND '"); //update send email row after sending mails	
+			mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL FRIENDS' WHERE `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
+			mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO' AND `user name notifed` !='NULL' AND '"); //update send email row after sending mails	
 			
         }
 			
@@ -105,7 +105,7 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 				   $man["user"]=$row[$key2]["username"]; 
                 }
 		    ////////////////gathering writer info finished/////////////////	
-    		mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL USER' WHERE `statusMessage`='".$userStatus[ $key ]["statusMessage"]."' AND `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
+    		mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL USER' WHERE `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
 			mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO' AND `user name notifed` !='NULL'"); //update send email row after sending mails	
 				
 			////////////////////sending mail block//////////////////
@@ -136,13 +136,13 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 			while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
 			   $qsl=mysql_query("SELECT email FROM fl_users WHERE id=".$row[0]);
 			   while ($rows = mysql_fetch_array($qsl, MYSQL_NUM)) {
-			         sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny photo comment",$tmpMessage );
-			         //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny forumlägg från", $tmpMessage );
+			         sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny photo comment",$rows[0] );
+			         //sendMail($rows[0], "agneta@flator.se", "Flator.se Crew","Ny forumlägg från", $tmpMessage );
 			    }
 			  }			
             
 		        ////////////////gathering writer info finished/////////////////	
-    	      	//mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL USER' WHERE `statusMessage`='".$userStatus[ $key ]["statusMessage"]."' AND `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
+    	      	//mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL USER' WHERE `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
 			    //mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO' AND `user name notifed` !='NULL'"); //update send email row after sending mails		
 				////////////////////sending mail block//////////////////
 				
@@ -162,7 +162,7 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 				$userStatus[ $key ]["statusMessage"] = '<span class="email_date">Skapade en ny forumtråd:</span> <a href="'.$baseUrl.'/forum/'.$forumThreadEntry["shortname"].'/'.$forumThreadEntry["slug"].'.html\">'.$forumThreadEntry["headline"].'</a>.';
 			} 
 		    ////////////////gathering writer info finished/////////////////	
-    		mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL USER' WHERE `statusMessage`='".$userStatus[ $key ]["statusMessage"]."' AND `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
+    		mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL USER' WHERE `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
 			mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO' AND `user name notifed` !='NULL'"); //update send email row after sending mails	
 				
 			////////////////////sending mail block//////////////////
@@ -179,21 +179,18 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 				   $man["user"]=$row[$key2]["username"]; 
                 }
 		    ////////////////gathering writer info finished/////////////////	
-    		mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL USER' WHERE `statusMessage`='".$userStatus[ $key ]["statusMessage"]."' AND `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
-			mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO' AND `user name notifed` !='NULL'"); //update send email row after sending mails	
+    		//mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL USER' WHERE `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
+			//mysql_query("UPDATE `fl_status` SET `send email`='YES'  WHERE `send email`='NO' AND `user name notifed` !='NULL'"); //update send email row after sending mails	
 				
 			//CREATE A MASSAGE
 			$tmpMessage="<br>Hej!</br><br>".$man["user"]."har laddat upp ett nytt photo!</br>";
 			
-			$q=mysql_query("SELECT friendUserId FROM fl_friends WHERE userId=".$userStatus[ $key ]["userId"]); 
+			$q=mysql_query("SELECT friendUserId FROM fl_friends WHERE userId=6"); 
 		    while ($row = mysql_fetch_array($q, MYSQL_NUM)) {		
-				$q=mysql_query("SELECT friendUserId FROM fl_friends WHERE userId=".$row[0]); 
-				while ($row = mysql_fetch_array($q, MYSQL_NUM)) {
 					$qs=mysql_query("SELECT `email` FROM `fl_users` WHERE `id`=".$row[0]);
-					while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
-					   sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny photo från din vänn", $tmpMessage );
-					   //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny photo från din vänn", $tmpMessage );
-					}			
+					while ($rows = mysql_fetch_array($qs, MYSQL_NUM)) {
+					   sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny photo från din vänn", $rows[0] );
+					   //sendMail($rows[0], "agneta@flator.se", "Flator.se Crew","Ny photo från din vänn", $tmpMessage );			
 			    }
 	        }		
 		}
