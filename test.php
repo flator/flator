@@ -30,7 +30,7 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 	$userStatus["Date"]=$userStatus[ $key ]["insDate"];
 	    if ($userStatus[ $key ]["statusType"] == "blogComment") {
 			//create a massage
-			$userStatus[ $key ]["statusMessage"] =str_replace("Kommenterade blogginlÃ¤gg:", "<span>Kommenterade blogginlÃ¤gg: ".$man["user"]." skrev i</span>", $userStatus[ $key ]["statusMessage"]);
+			$userStatus[ $key ]["statusMessage"] =str_replace("Kommenterade blogginlägg:", "<span>Kommenterade blogginlägg: ".$man["user"]." skrev i</span>", $userStatus[ $key ]["statusMessage"]);
 			$tmpMessage="<br>Hej !</br><br>".$userStatus[ $key ]["statusMessage"]."</br>";
 			
 			
@@ -52,9 +52,9 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 		
 		}
 			
-	    if ($userStatus[ $key ]["statusType"] == "forum inlÃ¤gg") {
+	    if ($userStatus[ $key ]["statusType"] == "forum inlägg") {
 		//create some message to user	
-		$userStatus[ $key ]["statusMessage"] =str_replace("foruminlÃ¤gg:", "<span>ForuminlÃ¤gg: ".$LastWriterName["name"]." skrev i</span>", $userStatus[ $key ]["statusMessage"]);
+		$userStatus[ $key ]["statusMessage"] =str_replace("foruminlägg:", "<span>Foruminlägg: ".$LastWriterName["name"]." skrev i</span>", $userStatus[ $key ]["statusMessage"]);
 		$tmpMessage="<br>Hej !</br><br>".$userStatus[ $key ]["statusMessage"]."</br>";  
 		
 		   //find forum contentId
@@ -65,8 +65,8 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 				while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
 				   $qsl=mysql_query("SELECT email FROM fl_users WHERE id=".$row[0]);
 				   while ($rows = mysql_fetch_array($qsl, MYSQL_NUM)) {
-						 sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny foruminlÃ¤gg",$tmpMessage);
-						 //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny forumlÃ¤gg", $tmpMessage );
+						 sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny foruminlägg",$tmpMessage);
+						 //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny forumlägg", $tmpMessage );
 					}
 				  }			
             }  
@@ -77,7 +77,7 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 	    if ($userStatus[ $key ]["statusType"] == "newFriend") {
 				
 	   //create a massage
-		$userStatus[ $key ]["statusMessage"] = str_replace("Blev vÃ¤n med:", "<span class=\"email_date\">".$UserId["user"]."Blev vÃ¤n med:</span>", $userStatus[ $key ]["statusMessage"]);
+		$userStatus[ $key ]["statusMessage"] = str_replace("Blev vän med:", "<span class=\"email_date\">".$UserId["user"]."Blev vän med:</span>", $userStatus[ $key ]["statusMessage"]);
 		$tmpMessage="<br>Hej !</br><br>".$userStatus[ $key ]["statusMessage"]."</br>";
 		
          $q=mysql_query("SELECT friendUserId FROM fl_friends WHERE userId=".$userStatus[ $key ]["userId"]); 
@@ -86,8 +86,8 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 				while ($row = mysql_fetch_array($q, MYSQL_NUM)) {
 					$qs=mysql_query("SELECT `email` FROM `fl_users` WHERE `id`=".$row[0]);
 					while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
-					   sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Nya vÃ¤nner ", $tmpMessage );
-					   //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Nya vÃ¤nner ", $tmpMessage );
+					   sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Nya vänner ", $tmpMessage );
+					   //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Nya vänner ", $tmpMessage );
 					  }			
 					}
 	        }	
@@ -111,7 +111,7 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 			////////////////////sending mail block//////////////////
 			$userStatus[ $key ]["statusMessage"] =$userStatus[ $key ]["statusMessage"] = str_replace("Lade till event", "<span class=\"email_date\">".$man["user"]."Lade till event:</span>", $userStatus[ $key ]["statusMessage"]);
 			$tmpMessage="<br>Hej !</br><br>". $userStatus[ $key ]["statusMessage"]."</br>";
-			sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny forumlÃ¤gg frÃ¥n", $tmpMessage );
+			sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny forumlägg från", $tmpMessage );
 			//////////////////finishing sending mail block/////////////
 			}
 
@@ -137,7 +137,7 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 			   $qsl=mysql_query("SELECT email FROM fl_users WHERE id=".$row[0]);
 			   while ($rows = mysql_fetch_array($qsl, MYSQL_NUM)) {
 			         sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny photo comment",$tmpMessage );
-			         //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny forumlÃ¤gg frÃ¥n", $tmpMessage );
+			         //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny forumlägg från", $tmpMessage );
 			    }
 			  }			
             
@@ -159,7 +159,7 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 			if (count($forumThreadEntry) < 1) continue;
 
 			if ($forumThreadEntry["newThread"] == "YES") {
-				$userStatus[ $key ]["statusMessage"] = '<span class="email_date">Skapade en ny forumtrÃ¥d:</span> <a href="'.$baseUrl.'/forum/'.$forumThreadEntry["shortname"].'/'.$forumThreadEntry["slug"].'.html\">'.$forumThreadEntry["headline"].'</a>.';
+				$userStatus[ $key ]["statusMessage"] = '<span class="email_date">Skapade en ny forumtråd:</span> <a href="'.$baseUrl.'/forum/'.$forumThreadEntry["shortname"].'/'.$forumThreadEntry["slug"].'.html\">'.$forumThreadEntry["headline"].'</a>.';
 			} 
 		    ////////////////gathering writer info finished/////////////////	
     		mysql_query("UPDATE `fl_status` SET `user name notifed`='ALL USER' WHERE `statusMessage`='".$userStatus[ $key ]["statusMessage"]."' AND `send email`='NO'");  //update user id notifed row after sending mails with $UserHowGetMails[$key]["users"]
@@ -167,7 +167,7 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 				
 			////////////////////sending mail block//////////////////
 			$tmpMessage="<br>Hej ".$man["user"]."!</br><br>".$userStatus[ $key ]["statusMessage"] ."</br>";
-				sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny forumlÃ¤gg frÃ¥n", $tmpMessage );
+				sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny forumlägg från", $tmpMessage );
 			//////////////////finishing sending mail block/////////////
 
 		    }
@@ -191,8 +191,8 @@ $userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
 				while ($row = mysql_fetch_array($q, MYSQL_NUM)) {
 					$qs=mysql_query("SELECT `email` FROM `fl_users` WHERE `id`=".$row[0]);
 					while ($row = mysql_fetch_array($qs, MYSQL_NUM)) {
-					   sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny photo frÃ¥n din vÃ¤nn", $tmpMessage );
-					   //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny photo frÃ¥n din vÃ¤nn", $tmpMessage );
+					   sendMail("pouyan@live.se", "pooyanstudio@yahoo.com", "Flator.se Crew","Ny photo från din vänn", $tmpMessage );
+					   //sendMail($row[0], "agneta@flator.se", "Flator.se Crew","Ny photo från din vänn", $tmpMessage );
 					}			
 			    }
 	        }		

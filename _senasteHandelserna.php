@@ -109,6 +109,18 @@ $body.= "<div style=\"float: left; \"><div style=\"padding-top: 14px; padding-bo
 		if ($userStatus[ $key ]["statusType"] == "blogComment") {
 		$userStatus[ $key ]["statusMessage"] = str_replace("Kommenterade blogginlägg:", "<span class=\"email_date\">Kommenterade blogginlägg:</span>", $userStatus[ $key ]["statusMessage"]);
 		}
+		///////////////////my code start here///////////////////////
+				if ($userStatus[ $key ]["statusType"] == "forum inlägg") {
+                //$f="SELECT username FROM fl_users WHERE id=".$userStatus[ $key ]["userId"];
+				$q="SELECT * FROM fl_users WHERE id=".$userStatus[ $key ]["userId"];
+				$row = $DB->CacheGetAssoc($q, FALSE, TRUE );
+				while ( list( $key2, $value ) = each( $row ) ){
+				$man["user"]=$row[$key2]["username"];
+               }
+			   $userStatus[ $key ]["statusMessage"] = str_replace("foruminlägg:", "<span class=\"email_date\">skrev en foruminlägg i</span>", $userStatus[ $key ]["statusMessage"]);
+          	}
+			
+			/////////////////////my code finish here//////////////////////
 		if ($userStatus[ $key ]["statusType"] == "newFriend") {
 		$userStatus[ $key ]["statusMessage"] = str_replace("Blev vän med:", "<span class=\"email_date\">Blev vän med:</span>", $userStatus[ $key ]["statusMessage"]);
 		}

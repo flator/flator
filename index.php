@@ -2227,6 +2227,16 @@ break;
 		include( "_form_enkat.php" );
 		break;
 		//////////////////pouyan codes begin here 
+	 case "test.html":
+		$loadAjax = TRUE;
+		$newCss = TRUE;
+		$jsConfirmSubmit = TRUE;
+		//$memberMenu = FALSE;
+#		$tinyMce = TRUE;
+		$divPopup = TRUE;
+		include( "test.php" );
+		break;
+		
     case "Umgas.html":
 		$loadAjax = TRUE;
 		$newCss = TRUE;

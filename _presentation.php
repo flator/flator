@@ -188,12 +188,7 @@ else
 #	{
 #		$avatar = "<img src=\"" . $baseUrl . "/img/symbols/gif_avatars/person_avantar_stor.gif\" border=\"0\" width=\"167\" height=\"191\" />";
 #	}
-////////////////////////////pouyan last one
-$q= "SELECT *, UNIX_TIMESTAMP(insDate) AS unixTime FROM fl_forum_threads WHERE (insDate > DATE_SUB(NOW(), INTERVAL 30 DAY)) ORDER BY insDate DESC ";
-	$userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
-	while( list( $key, $value ) = each( $userStatus )){
-	$userStatus[ $key ]["statusMessage"] = str_replace("forumEntry:", "<span class=\"email_date\">Kommenterade forumEntry:</span>", $userStatus[ $key ]["statusMessage"]);
-	}
+
 	$q = "SELECT * FROM fl_images WHERE userId = " . (int)$userPres["id"] . " AND imageType = 'profileMedium'";
 	$profileImage = $DB->GetRow( $q, FALSE, TRUE );
 	if ( count( $profileImage ) > 0 )
@@ -475,13 +470,10 @@ window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 
 	$commentedPhotos = array();
 	if ($_GET["s"] == "full") {
-	//pouyan changed from 30 to 200
 	$q = "SELECT *, UNIX_TIMESTAMP(insDate) AS unixTime FROM fl_status WHERE userId = " . (int)$userPres["id"] . " and statusType != 'newPhoto' AND (insDate > DATE_SUB(NOW(), INTERVAL 30 DAY)) ORDER BY insDate DESC ";
 	$statusMax = 9999;
 	} else {
-	//pouyan
 	$q = "SELECT *, UNIX_TIMESTAMP(insDate) AS unixTime FROM fl_status WHERE userId = " . (int)$userPres["id"] . " and statusType != 'newPhoto' ORDER BY insDate DESC LIMIT 0,50";
-	//$q = "SELECT * FROM fl_users WHERE insDate>2008-11-25 20:14:36";
 	$statusMax = 10;
 	}
 	$userStatus = $DB->CacheGetAssoc( 5, $q, FALSE, TRUE );
@@ -533,11 +525,18 @@ window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 
 			}
 			}
-			//////////////////pouyan start here
-			if ($userStatus[ $key ]["statusType"] == "blogComment") {
-			$userStatus[ $key ]["statusMessage"] = str_replace("Kommenterade blogginlägg:", "<span class=\"email_date\">Kommenterade blogginlägg:</span>", $userStatus[ $key ]["statusMessage"]);
-			}
+			///////////////////my code start here///////////////////////
+				if ($userStatus[ $key ]["statusType"] == "forum inlägg") {
+                //$f="SELECT username FROM fl_users WHERE id=".$userStatus[ $key ]["userId"];
+				$q="SELECT * FROM fl_users WHERE id=".$userStatus[ $key ]["userId"];
+				$row = $DB->CacheGetAssoc($q, FALSE, TRUE );
+				while ( list( $key2, $value ) = each( $row ) ){
+				$man["user"]=$row[$key2]["username"];
+               }
+			   $userStatus[ $key ]["statusMessage"] = str_replace("foruminlägg:", "<span class=\"email_date\">Foruminlägg: ".$man["user"]." skrev i</span>", $userStatus[ $key ]["statusMessage"]);
+          	}
 			
+			/////////////////////my code finish here//////////////////////
 			if ($userStatus[ $key ]["statusType"] == "newFriend") {
 			$userStatus[ $key ]["statusMessage"] = str_replace("Blev vän med:", "<span class=\"email_date\">Blev vän med:</span>", $userStatus[ $key ]["statusMessage"]);
 			}
@@ -702,11 +701,12 @@ window.open(" . $baseUrl . "/videochatt/','videochat','width=800,height=620');
 				$forumThreadEntry["headline"] = $forumThreadEntry_base["headline"];
 				$userStatus[ $key ]["statusMessage"] = '<span class="email_date">Skrev ett inlägg i forumtråden:</span> <a href="'.$baseUrl.'/forum/'.$forumThreadEntry["shortname"].'/'.$forumThreadEntry["slug"].'.html\">'.$forumThreadEntry["headline"].'</a>.';
 			}
+		
 		    }
 
 
 
-if ($userStatus[ $key ]["statusType"] == "newPhotosUploaded") {
+            if ($userStatus[ $key ]["statusType"] == "newPhotosUploaded") {
 			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/bild.gif" style="vertical-align:top;margin-top:3px;" border="0">';
 			} elseif ($userStatus[ $key ]["statusType"] == "personalMessage") {
 			$symbol = '<img src="' . $baseUrl . '/img/symbols/gif_purple/logga_in.gif" style="vertical-align:top;margin-top:3px;" border="0">';
@@ -807,8 +807,6 @@ if ($userStatus[ $key ]["statusType"] == "newPhotosUploaded") {
 					{
 						$avatar = "<img src=\"" . $baseUrl . "/img/symbols/gif_avatars/person_avnatar_liten.gif\" border=\"0\" width=\"26\" height=\"29\" style=\"margin-bottom:8px; margin-left:4px;margin-top:8px; margin-right:5px;\" />";
 					}
-					/////////////////////////////pouyan codes begin here
-					//$q = SELECT * FROM `fl_status` WHERE id=
 
 					$q = "SELECT * FROM fl_images WHERE userId = " . (int)$userStatusComments[$key][ $key3 ]["userId"] . " AND imageType = 'profileMedium'";
 					$guestImage = $DB->GetRow( $q, FALSE, TRUE );
@@ -924,8 +922,7 @@ if ($userStatus[ $key ]["statusType"] == "newPhotosUploaded") {
 <input type=\"submit\" name=\"Skicka\" value=\"\" class=\"btnSearch\" /></form></td>";
 					$body .= "</tr>";
 					$body .= "</table></div></td></tr>";
-			}
-
+			}			
 			
 			$body .= "</tr>";
 			$body .= "<tr><td colspan=\"1\" style=\"height:11px;font-size:6px; line-height: 6px;\" height=\"4px\">&nbsp;</td></tr>";

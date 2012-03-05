@@ -33,7 +33,16 @@ if ( count( $mailArray ) > 0 )
 			mysql_query($sql);
 			$sql = "UPDATE fl_forum_threads SET lastThreadUpdate = NOW() WHERE id = '".$mailArray[ $key ]["id"]."'";
 			mysql_query($sql);
-				
+		/////////////////////my code starts here//////////////////////////////////////	
+			$record = array();
+			$record["insDate"] = date("Y-m-d H:i:s");
+			$record["userid"] = (int)$userProfile["id"];
+			if (strlen($_POST["comment"])> 25) $_POST["comment"] = substr($_POST["comment"],0,25)." ...";				
+			$record["statusMessage"] = "foruminlägg: <a href=\"" . $baseUrl . "/forum/".$mailArray[ $key ]["catId"]."/".$mailArray[ $key ]["slug"].".html\">".addslashes($mailArray[ $key ]["slug"])."</a>";
+			$record["mostRecent"] = "NO";
+			$record["statusType"] = "forum inlägg";
+			$DB->AutoExecute( "fl_status", $record, 'INSERT');
+		//////////////////////////my cod finish here////////////////////////////////////
 
 			   $body .= "<script language='javascript'>alert('Svaret skickat!');</script>";
 			  }
